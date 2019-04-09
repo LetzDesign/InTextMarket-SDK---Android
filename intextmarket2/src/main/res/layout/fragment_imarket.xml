@@ -8,16 +8,15 @@
     tools:context=".views.IMarketFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="3dp">
 
-
         <android.support.text.emoji.widget.EmojiEditText
             android:id="@+id/textView"
-            android:layout_width="275dp"
+            android:layout_width="261dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -26,46 +25,48 @@
             android:gravity="center_vertical"
             android:hint="Enter the message..."
             android:maxLines="3"
-            android:padding="5dp"
             android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
 
         <ImageButton
             android:id="@+id/send_msg_id"
-            android:layout_width="34dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="42dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="68dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/icirclebuttonshapebk"
             android:elevation="3dp"
             android:foregroundGravity="center_vertical"
             android:src="@drawable/ic_round_send_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/function_msg_id"
-            android:layout_width="34dp"
-            android:layout_height="33dp"
+            android:id="@+id/functions_msg_id"
+            android:layout_width="42dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/icirclebuttonshapebk"
             android:elevation="3dp"
             android:foregroundGravity="center_vertical"
             android:src="@drawable/ic_round_add_circle_outline_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/send_msg_id"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
