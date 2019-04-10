@@ -1,6 +1,6 @@
 package com.intext.intextmarket2.api.interfaces;
 
-import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
+import com.intext.intextmarket2.api.pojo.APIAuthResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -27,13 +27,9 @@ import retrofit2.http.POST;
  * limitations under the License.
  */
 
-public interface RequestIMarketBusiness {
+public interface IMarketApiAuth {
 
     @FormUrlEncoded
-    @POST("available/business")
-    Call<IMBusinessResponse>getInTextWordsBusiness(@Field("apikey") String apikey, @Field("words") String json);
-
-    @FormUrlEncoded
-    @POST("transaction/business/receipt")
-    Call<Void> businessReceiptDeliver(@Field("apikey") String apiKey, @Field("transaction_id") String transaction_id, @Field("status") int status);
+    @POST("application/auth")
+    Call<APIAuthResponse>getAppAccess(@Field("accountKey") String accountKey);
 }
