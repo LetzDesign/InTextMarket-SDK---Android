@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IFunctionsFragmen
         setContentView(R.layout.activity_main);
     }
 
-    //Implement IMarket listeners (IFunctionsFragment.IMarketListener and IMarketFragment.IMarketListener)
+    //Implement IMarket listeners (IFunctionsFragment.IMarketFunctionsListener and IMarketFragment.IMarketListener)
     @Override
     public void onCameraClick() {
         Toast.makeText(this, "On Fragment Camera click event.", Toast.LENGTH_SHORT).show();
