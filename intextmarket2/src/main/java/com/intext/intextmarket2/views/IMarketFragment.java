@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.dialogs.IMarketDialogs;
 
 //https://www.youtube.com/watch?v=b3u4FrD8lP8
 
 public class IMarketFragment extends Fragment {
 
-    private ImageButton sendButton;
+    private ImageButton sendButton, functionsButton;
     private View IMarketRoot;
 
     @Nullable
@@ -25,8 +26,25 @@ public class IMarketFragment extends Fragment {
         IMarketRoot = inflater.inflate(R.layout.fragment_imarket, container, false);
 
         initPressAndHoldListener();
+        initFunctionsListener();
 
         return IMarketRoot;
+    }
+
+    private void initFunctionsListener() {
+        functionsButton = IMarketRoot.findViewById(R.id.functions_msg_id);
+
+        functionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IMarketDialogs.genericDialog(
+                        IMarketRoot.getContext(),
+                        "Testing Dialog Angeliz",
+                        "Angeliz... ejele",
+                        IMarketDialogs.IMDialogType.HELP
+                );
+            }
+        });
     }
 
     private void initPressAndHoldListener() {
@@ -35,7 +53,12 @@ public class IMarketFragment extends Fragment {
         sendButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Log.d("FRAG LONG_CLICK","Execute press and hold event...");
+                IMarketDialogs.genericDialog(
+                        IMarketRoot.getContext(),
+                        "Press and hold Event trigger...",
+                        "Calling API",
+                        IMarketDialogs.IMDialogType.SUCCESS
+                );
                 return false;
             }
         });
