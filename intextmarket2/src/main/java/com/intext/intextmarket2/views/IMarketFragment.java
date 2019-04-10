@@ -3,7 +3,6 @@ package com.intext.intextmarket2.views;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.intext.intextmarket2.dialogs.IMarketDialogs;
 
 public class IMarketFragment extends Fragment {
 
-    private ImageButton sendButton, functionsButton;
     private View IMarketRoot;
 
     @Nullable
@@ -32,7 +30,7 @@ public class IMarketFragment extends Fragment {
     }
 
     private void initFunctionsListener() {
-        functionsButton = IMarketRoot.findViewById(R.id.functions_msg_id);
+        ImageButton functionsButton = IMarketRoot.findViewById(R.id.functions_msg_id);
 
         functionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +46,7 @@ public class IMarketFragment extends Fragment {
     }
 
     private void initPressAndHoldListener() {
-        sendButton = IMarketRoot.findViewById(R.id.send_msg_id);
+        ImageButton sendButton = IMarketRoot.findViewById(R.id.send_msg_id);
 
         sendButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
