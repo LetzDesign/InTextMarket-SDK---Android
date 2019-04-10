@@ -26,7 +26,7 @@ public class APIAuthResponse {
 
     @SerializedName("status")
     @Expose
-    private String status;
+    private int status;
 
     @SerializedName("token")
     @Expose
@@ -34,13 +34,11 @@ public class APIAuthResponse {
 
     @SerializedName("accountID")
     @Expose
-    private int accontID;
+    private int accountID;
 
-    public String getStatus() {
-        return status;
-    }
+    public int getStatus() { return status; }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -53,10 +51,10 @@ public class APIAuthResponse {
     }
 
     public int getAccontID() {
-        return accontID;
+        return accountID;
     }
 
     public void setAccontID(int accontID) {
-        this.accontID = accontID;
+        this.accountID = accontID;
     }
 }

@@ -31,5 +31,10 @@ public interface IMarketApiAuth {
 
     @FormUrlEncoded
     @POST("application/auth")
-    Call<APIAuthResponse>getAppAccess(@Field("accountKey") String accountKey);
+    Call<APIAuthResponse>getAppAccess(
+            @Field("accountKey") String accountKey,
+            @Field("accountID") int accountID,
+            @Field("apikey") String apiKey,
+            @Field("apisecret") String apiSecret
+    );
 }

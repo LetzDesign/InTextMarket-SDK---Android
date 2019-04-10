@@ -49,7 +49,7 @@ public class IMarketAPI {
     }
 
     public static class Config{
-        public String API_KEY;
+        public String API_KEY = "LmxY3Zkcwp8LJmi5UFlQlBQeWIgoTxIz/$kgfo$d09nsnUCtJlXIjIJfjgZOejgjnLK";
         public String API_SECRET;
         public String ACCOUNT_KEY;
         public int ACCOUNT_ID;
