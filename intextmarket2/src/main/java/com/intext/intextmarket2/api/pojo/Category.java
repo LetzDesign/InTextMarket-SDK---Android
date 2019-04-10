@@ -23,17 +23,39 @@ import com.google.gson.annotations.SerializedName;
  * limitations under the License.
  */
 
-public class IMBusinessResponse {
+public class Category {
 
-    @SerializedName("service")
+    @SerializedName("name")
     @Expose
-    private ServiceBusiness service;
+    private String name;
+    @SerializedName("category_id")
+    @Expose
+    private Integer categoryId;
+    @SerializedName("src")
+    @Expose
+    private String src;
 
-    public ServiceBusiness getService() {
-        return service;
+    public String getName() {
+        return name;
     }
 
-    public void setService(ServiceBusiness service) {
-        this.service = service;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
     }
 }

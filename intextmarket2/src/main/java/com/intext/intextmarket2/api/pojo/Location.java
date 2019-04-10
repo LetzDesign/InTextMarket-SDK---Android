@@ -23,17 +23,28 @@ import com.google.gson.annotations.SerializedName;
  * limitations under the License.
  */
 
-public class IMBusinessResponse {
+public class Location {
 
-    @SerializedName("service")
+    @SerializedName("latitude")
     @Expose
-    private ServiceBusiness service;
+    private Double latitude;
+    @SerializedName("longitude")
+    @Expose
+    private Double longitude;
 
-    public ServiceBusiness getService() {
-        return service;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setService(ServiceBusiness service) {
-        this.service = service;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
