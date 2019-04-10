@@ -42,7 +42,7 @@ public class IMarketFragment extends Fragment {
         functionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragmentEvent();
+                IMarketManager.showIMarketFunctions(getFragmentManager(), root);
             }
         });
     }
@@ -61,9 +61,5 @@ public class IMarketFragment extends Fragment {
                 return false;
             }
         });
-    }
-
-    private void replaceFragmentEvent() {
-        IMarketManager.showIMarketFunctions(getFragmentManager(), root);
     }
 }
