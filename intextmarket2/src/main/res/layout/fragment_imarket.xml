@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="3dp">
 
         <android.support.text.emoji.widget.EmojiEditText
-            android:id="@+id/textView"
+            android:id="@+id/iMarketTextView"
             android:layout_width="261dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/iMarketTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
@@ -59,7 +59,7 @@
             android:layout_marginBottom="8dp"
             android:elevation="3dp"
             android:foregroundGravity="center_vertical"
-            android:src="@drawable/ic_round_add_circle_outline_24px"
+            android:src="@drawable/ic_round_attach_file_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
