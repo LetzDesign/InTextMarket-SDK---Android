@@ -26,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
         if(IMarketManager.init(this, config )){
             IMarketManager.initIMarketEmoji(this);
             IMarketManager.builder(
-                    this.getSupportFragmentManager(), //activity fragment manager
-                    R.id.market_fragment //activity fragment container layout id
+                    this.getSupportFragmentManager(), //use your activity fragment manager
+                    R.id.market_fragment //use your activity fragment container layout id
             );
         }else{
+            //IMarket Dialog - example purpose only...
             IMarketDialogs.genericDialog(
                     this,
                     "InText-Market API Auth Error.",
