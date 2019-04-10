@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="InText-Market"
+        android:text="InText-Market SDK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,5 +36,6 @@
         app:layout_constraintVertical_bias="1.0">
 
     </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>

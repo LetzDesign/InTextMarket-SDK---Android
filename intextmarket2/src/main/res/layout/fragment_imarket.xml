@@ -10,7 +10,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="3dp">
 

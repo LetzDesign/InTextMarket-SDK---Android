@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/iaudio_msg_id"
+        app:layout_constraintStart_toEndOf="@+id/iaudio_msg_id"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="3dp">
 
@@ -18,19 +21,74 @@
             android:id="@+id/icamera_msg_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="14dp"
             android:elevation="3dp"
             android:src="@drawable/ic_round_photo_camera_24px"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/iattach_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/iattach_msg_id"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iattach_msg_id" />
 
         <ImageButton
             android:id="@+id/iattach_msg_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
             android:elevation="3dp"
             android:src="@drawable/ic_round_attach_file_24px"
-            tools:layout_editor_absoluteX="101dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/iaudio_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/iaudio_msg_id"
+            app:layout_constraintStart_toEndOf="@+id/icamera_msg_id"
+            app:layout_constraintTop_toTopOf="@+id/iaudio_msg_id" />
+
+        <ImageButton
+            android:id="@+id/iaudio_msg_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="3dp"
+            android:src="@drawable/ic_round_mic_24px"
+            app:layout_constraintBottom_toBottomOf="@+id/ivideo_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/ivideo_msg_id"
+            app:layout_constraintStart_toEndOf="@+id/iattach_msg_id"
+            app:layout_constraintTop_toTopOf="@+id/ivideo_msg_id" />
+
+        <ImageButton
+            android:id="@+id/ivideo_msg_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="3dp"
+            android:src="@drawable/ic_round_videocam_24px"
+            app:layout_constraintBottom_toBottomOf="@+id/ishare_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/ishare_msg_id"
+            app:layout_constraintStart_toEndOf="@+id/iaudio_msg_id"
+            app:layout_constraintTop_toTopOf="@+id/ishare_msg_id" />
+
+        <ImageButton
+            android:id="@+id/ishare_msg_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:elevation="3dp"
+            android:src="@drawable/ic_round_share_24px"
+            app:layout_constraintBottom_toBottomOf="@+id/iclose_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/iclose_msg_id"
+            app:layout_constraintStart_toEndOf="@+id/ivideo_msg_id"
+            app:layout_constraintTop_toTopOf="@+id/iclose_msg_id" />
+
+        <ImageButton
+            android:id="@+id/iclose_msg_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:src="@drawable/ic_round_close_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ishare_msg_id"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

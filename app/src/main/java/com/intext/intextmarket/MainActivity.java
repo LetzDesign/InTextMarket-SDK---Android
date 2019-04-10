@@ -10,12 +10,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Init IMarket-SDK
+        IMarketManager.initIMarketEmoji(this);
         initInTextMarket();
+
         setContentView(R.layout.activity_main);
     }
 
     private void initInTextMarket() {
-        IMarketManager.initIMarketEmoji(this);
         IMarketManager.builder(
                 this.getSupportFragmentManager(),
                 R.id.market_fragment
