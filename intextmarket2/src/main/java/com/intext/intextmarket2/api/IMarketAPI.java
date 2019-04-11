@@ -1,32 +1,13 @@
 package com.intext.intextmarket2.api;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.FragmentManager;
 
 import com.intext.intextmarket2.IMarketManager;
-import com.intext.intextmarket2.api.background.IMBackgroundService;
 import com.intext.intextmarket2.api.interfaces.IMarketApiAuth;
 import com.intext.intextmarket2.api.pojo.APIAuthResponse;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.utils.IMUtilities;
-
-import java.io.IOException;
-import java.net.Socket;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.concurrent.Callable;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.X509ExtendedTrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
