@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements IFunctionsFragmen
      *
      * IMPLEMENTATION SAMPLE
      * InTextChat @2019
-     * @author INTEXT SOFTWARE LLC     *
+     * @author INTEXT SOFTWARE LLC
      */
 
     @Override
