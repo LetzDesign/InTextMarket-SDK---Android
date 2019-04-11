@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
 /**
@@ -62,6 +63,7 @@ public class IFunctionsFragment extends Fragment {
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
+        initPermissions();
         initCloseAndBackFunctionFragment();
 
         return IMarketRoot;
@@ -139,5 +141,10 @@ public class IFunctionsFragment extends Fragment {
                     iMarketFunctionsListener.onSharedClick();
             }
         });
+    }
+
+    private void initPermissions() {
+        IMarketPermission iMarketPermission = new IMarketPermission(getActivity(), getContext());
+        iMarketPermission.checkPermissions();
     }
 }

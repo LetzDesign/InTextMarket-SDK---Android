@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.permissions.IMarketPermission;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -38,6 +39,28 @@ public class IMarketDialogs {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void locationNotHavePermission(Context c, final IMarketPermission iMarketPermission){
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+        alertDialog.setTitle("Search Markets, Anything and More...");
+        alertDialog.setMessage("To be able to use this functionality you must grant the location permission.\n\n" +
+                "Thank you!");
+        alertDialog.setIcon( getAlertIcon(IMDialogType.HELP) );
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CLOSE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                iMarketPermission.checkLocationPermission();
             }
         });
 

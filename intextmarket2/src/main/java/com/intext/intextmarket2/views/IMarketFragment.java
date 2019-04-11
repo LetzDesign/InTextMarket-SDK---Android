@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
+import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
 import java.util.Objects;
@@ -70,6 +71,7 @@ public class IMarketFragment extends Fragment {
 
         initPressAndHoldListener();
         initFunctionsListener();
+        initPermissions();
 
         return IMarketRoot;
     }
@@ -101,13 +103,18 @@ public class IMarketFragment extends Fragment {
         sendButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                IMarketDialogs.genericDialog(
-                        IMarketRoot.getContext(),
-                        "Press and hold Event trigger...",
-                        "Calling API...\nMessage: " + emojiEditText.getText().toString(),
-                        IMarketDialogs.IMDialogType.SUCCESS
-                );
-                cleanEmojiEditText();
+                IMarketPermission iMarketPermission = new IMarketPermission(getActivity(), getContext());
+                if(iMarketPermission.locationHasPermission()){
+                    IMarketDialogs.genericDialog(
+                            IMarketRoot.getContext(),
+                            "Press and hold Event trigger...",
+                            "Calling API...\nMessage: " + emojiEditText.getText().toString(),
+                            IMarketDialogs.IMDialogType.SUCCESS
+                    );
+                    cleanEmojiEditText();
+                }else{
+                    IMarketDialogs.locationNotHavePermission(getContext(), iMarketPermission);
+                }
                 return false;
             }
         });
@@ -139,5 +146,10 @@ public class IMarketFragment extends Fragment {
                 cleanEmojiEditText();
             }
         });
+    }
+
+    private void initPermissions() {
+        IMarketPermission iMarketPermission = new IMarketPermission(getActivity(), getContext());
+        iMarketPermission.checkPermissions();
     }
 }
