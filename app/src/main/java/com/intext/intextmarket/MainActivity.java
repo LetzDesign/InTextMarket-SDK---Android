@@ -6,22 +6,8 @@ import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.IMarketAPI;
-import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.views.IFunctionsFragment;
 import com.intext.intextmarket2.views.IMarketFragment;
-
-import java.net.Socket;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.X509ExtendedTrustManager;
-import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -44,6 +30,14 @@ import javax.net.ssl.X509TrustManager;
  */
 
 public class MainActivity extends AppCompatActivity implements IFunctionsFragment.IMarketFunctionsListener, IMarketFragment.IMarketListener {
+
+    /**
+     * INTEXT MARKET-SDK
+     *
+     * IMPLEMENTATION SAMPLE
+     * InTextChat @2019
+     * @author INTEXT SOFTWARE LLC     *
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
