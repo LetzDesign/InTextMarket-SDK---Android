@@ -27,7 +27,7 @@ import retrofit2.http.POST;
  * limitations under the License.
  */
 
-public interface RequestIMarketBusiness {
+public interface IMarketRequestBusiness {
 
     @FormUrlEncoded
     @POST("available/business")
