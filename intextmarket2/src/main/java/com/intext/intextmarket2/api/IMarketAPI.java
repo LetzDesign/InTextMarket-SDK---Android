@@ -65,7 +65,7 @@ public class IMarketAPI {
     }
 
     public void apiAccountValidation(){
-        //TODO add SSL to Server - REMOVE CLEARTEXT=true from Manifest!!!
+        //TODO Configure Server SSL - REMOVE CLEARTEXT = true from the Manifest!!!
         if(IMUtilities.isNetworkConnected(context)) {
             retrofit = IMUtilities.setRetrofit(INTEXTWORDS_BASE_URL + INTEXTWORDS_API_PREFIX + INTEXTWORDS_API_VERSION);
             iMarketApiAuthService = retrofit.create(IMarketApiAuth.class);
