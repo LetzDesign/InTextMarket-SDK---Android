@@ -70,7 +70,7 @@ public class IMarketAPI {
             retrofit = IMUtilities.setRetrofit(INTEXTWORDS_BASE_URL + INTEXTWORDS_API_PREFIX + INTEXTWORDS_API_VERSION);
             iMarketApiAuthService = retrofit.create(IMarketApiAuth.class);
 
-            final Call<APIAuthResponse> call = iMarketApiAuthService
+            Call<APIAuthResponse> call = iMarketApiAuthService
                     .getApplicationAccess(
                             config.ACCOUNT_KEY,
                             config.ACCOUNT_ID,
