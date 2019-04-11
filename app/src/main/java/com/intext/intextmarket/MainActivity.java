@@ -10,6 +10,19 @@ import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.views.IFunctionsFragment;
 import com.intext.intextmarket2.views.IMarketFragment;
 
+import java.net.Socket;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509ExtendedTrustManager;
+import javax.net.ssl.X509TrustManager;
+
 /**
  * Created by Ing. Letzer Cartagena Negron
  * InTextChat @2019
@@ -45,21 +58,12 @@ public class MainActivity extends AppCompatActivity implements IFunctionsFragmen
         config.AUTH_END_POINT = "http://www.api.intextwords.com/api/v1"; //use your api auth end point
 
         //Init IMarket-SDK
-        if(IMarketManager.init(this, config )){
-            IMarketManager.initIMarketEmoji(this);
-            IMarketManager.builder(
-                    this.getSupportFragmentManager(), //use your activity fragment manager
-                    R.id.market_fragment //use your activity fragment container layout id
-            );
-        }else{
-            //IMarket Dialog - example purpose only...
-            IMarketDialogs.genericDialog(
-                    this,
-                    "InText-Market API Auth Error.",
-                    "An auth error occurred, please contact us.",
-                    IMarketDialogs.IMDialogType.ERROR
-            );
-        }
+        IMarketManager.init(
+                this, //Activity Context
+                config,  //IMarket Config Object
+                getSupportFragmentManager(), //Activity Fragment Manager
+                R.id.market_fragment //Fragment container layout ID
+        );
 
         setContentView(R.layout.activity_main);
     }

@@ -33,9 +33,9 @@ import com.intext.intextmarket2.views.IMarketFragment;
 
 public class IMarketManager {
 
-    public static boolean init(Context c, IMarketAPI.Config config){
-        IMarketAPI iMarketAPI = new IMarketAPI(c, config);
-        return iMarketAPI.apiAccountValidation();
+    public static void init(Context context, IMarketAPI.Config config, FragmentManager fragmentManager, int layout){
+        IMarketAPI iMarketAPI = new IMarketAPI(context, config, fragmentManager, layout);
+        iMarketAPI.apiAccountValidation();
     }
 
     public static void builder(FragmentManager fragmentManager, int fragmentContainer){
@@ -64,8 +64,8 @@ public class IMarketManager {
         fragmentTransaction.commit();
     }
 
-    public static void initIMarketEmoji(Context c){
-        EmojiCompat.Config config = new BundledEmojiCompatConfig(c);
+    public static void initIMarketEmoji(Context context){
+        EmojiCompat.Config config = new BundledEmojiCompatConfig(context);
         EmojiCompat.init(config);
     }
 }

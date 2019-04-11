@@ -1,6 +1,37 @@
 package com.intext.intextmarket2.api;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.app.FragmentManager;
+
+import com.intext.intextmarket2.IMarketManager;
+import com.intext.intextmarket2.api.background.IMBackgroundService;
+import com.intext.intextmarket2.api.interfaces.IMarketApiAuth;
+import com.intext.intextmarket2.api.pojo.APIAuthResponse;
+import com.intext.intextmarket2.dialogs.IMarketDialogs;
+import com.intext.intextmarket2.utils.IMUtilities;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.concurrent.Callable;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509ExtendedTrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -30,6 +61,11 @@ public class IMarketAPI {
 
     private IMarketAPI.Config config;
     private Context context;
+    private IMarketApiAuth iMarketApiAuthService;
+    private APIAuthResponse apiAuthResponse;
+    private Retrofit retrofit;
+    private FragmentManager fragmentManager;
+    private int layout;
 
     public IMarketAPI(Config config) {
         this.config = config;
@@ -40,8 +76,69 @@ public class IMarketAPI {
         this.context = context;
     }
 
-    public boolean apiAccountValidation(){
-        return true;
+    public IMarketAPI(Context context, Config config, FragmentManager fragmentManager, int layout) {
+        this.config = config;
+        this.context = context;
+        this.fragmentManager = fragmentManager;
+        this.layout = layout;
+    }
+
+    public void apiAccountValidation(){
+        //TODO add SSL to Server - Error on Call
+        if(IMUtilities.isNetworkConnected(context)) {
+            retrofit = IMUtilities.setRetrofit(INTEXTWORDS_BASE_URL + INTEXTWORDS_API_PREFIX + INTEXTWORDS_API_VERSION);
+            iMarketApiAuthService = retrofit.create(IMarketApiAuth.class);
+
+            final Call<APIAuthResponse> call = iMarketApiAuthService
+                    .getApplicationAccess(
+                            config.ACCOUNT_KEY,
+                            config.ACCOUNT_ID,
+                            config.API_KEY,
+                            config.API_SECRET
+                    );
+
+            call.enqueue(new Callback<APIAuthResponse>() {
+                @Override
+                public void onResponse(Call<APIAuthResponse> call, Response<APIAuthResponse> response) {
+                    if(response.code() == 200){
+                        apiAuthResponse = response.body();
+                        if(apiAuthResponse.getStatus() == 200){
+
+                            IMarketManager.initIMarketEmoji(context);
+                            IMarketManager.builder(fragmentManager, layout);
+
+                            IMarketDialogs.genericDialog(
+                                    context,
+                                    "Auth API Testing",
+                                    "Response: \nStatus: " +
+                                            String.valueOf(apiAuthResponse.getStatus()) +
+                                            "\nToken: " + apiAuthResponse.getToken() +
+                                            "\nAccountID: " + String.valueOf(apiAuthResponse.getAccountID()),
+                                    IMarketDialogs.IMDialogType.SUCCESS
+                            );
+                        }else{
+                            IMarketDialogs.genericDialog(
+                                    context,
+                                    "INTextMarket API Auth Fail",
+                                    "Please check your appliacation credentials...",
+                                    IMarketDialogs.IMDialogType.WARNING
+                            );
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<APIAuthResponse> call, Throwable t) {
+                    IMarketDialogs.genericDialog(
+                            context,
+                            "Auth API Server Error",
+                            "An error occurred, please try again or contact us.\n" +
+                                    "Error: " + t.getMessage() + "\nCode: " + t.getStackTrace().toString(),
+                            IMarketDialogs.IMDialogType.ERROR
+                    );
+                }
+            });
+        }
     }
 
     public void setConfig(Config config) {
@@ -55,4 +152,5 @@ public class IMarketAPI {
         public int ACCOUNT_ID;
         public String AUTH_END_POINT;
     }
+
 }

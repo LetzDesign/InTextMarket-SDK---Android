@@ -1,11 +1,7 @@
-package com.intext.intextmarket2.api.interfaces;
+package com.intext.intextmarket2.api.background;
 
-import com.intext.intextmarket2.api.pojo.APIAuthResponse;
-
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import android.app.IntentService;
+import android.content.Intent;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -27,14 +23,19 @@ import retrofit2.http.POST;
  * limitations under the License.
  */
 
-public interface IMarketApiAuth {
+public class IMBackgroundService extends IntentService {
 
-    @FormUrlEncoded
-    @POST("application/auth")
-    Call<APIAuthResponse>getApplicationAccess(
-            @Field("accountKey") String accountKey,
-            @Field("accountID") int accountID,
-            @Field("apikey") String apiKey,
-            @Field("apisecret") String apiSecret
-    );
+    /**
+     * Creates an IntentService.  Invoked by your subclass's constructor.
+     *
+     * @param name Used to name the worker thread, important only for debugging.
+     */
+    public IMBackgroundService(String name) {
+        super("TEST");
+    }
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+
+    }
 }

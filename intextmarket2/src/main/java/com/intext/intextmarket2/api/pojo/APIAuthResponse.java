@@ -50,11 +50,11 @@ public class APIAuthResponse {
         this.token = token;
     }
 
-    public int getAccontID() {
+    public int getAccountID() {
         return accountID;
     }
 
-    public void setAccontID(int accontID) {
+    public void setAccountID(int accontID) {
         this.accountID = accontID;
     }
 }

@@ -1,5 +1,6 @@
 package com.intext.intextmarket2.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.text.emoji.widget.EmojiEditText;
@@ -7,12 +8,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.utils.IMUtilities;
+
+import java.util.Objects;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -61,6 +66,8 @@ public class IMarketFragment extends Fragment {
 
         sendButton = IMarketRoot.findViewById(R.id.send_msg_id);
 
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         initPressAndHoldListener();
         initFunctionsListener();
 
@@ -108,6 +115,15 @@ public class IMarketFragment extends Fragment {
 
     private void cleanEmojiEditText() {
         emojiEditText.setText("");
+
+        InputMethodManager inputManager = (InputMethodManager) Objects.requireNonNull(getActivity())
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        View currentFocusedView = getActivity().getCurrentFocus();
+
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     private void initInterfaceCallbacks(View v) {
