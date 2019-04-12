@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
-import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
