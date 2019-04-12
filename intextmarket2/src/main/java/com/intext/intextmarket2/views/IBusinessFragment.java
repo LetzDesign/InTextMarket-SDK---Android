@@ -1,9 +1,8 @@
 package com.intext.intextmarket2.views;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +29,10 @@ import com.intext.intextmarket2.R;
  * limitations under the License.
  */
 
-public class IBusinessFragment extends Fragment {
+public class IBusinessFragment extends DialogFragment {
 
     private IMarketBusinessListener iMarketBusinessListener;
+    private View IBusinessRoot;
 
     public interface IMarketBusinessListener {
 
@@ -43,8 +43,10 @@ public class IBusinessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ibusiness, container, false);
+
+        IBusinessRoot = inflater.inflate(R.layout.fragment_ibusiness, container, false);
+
+        return IBusinessRoot;
     }
 
     @Override

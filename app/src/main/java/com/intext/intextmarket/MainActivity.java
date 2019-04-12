@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.IMarketAPI;
+import com.intext.intextmarket2.views.IBusinessFragment;
 import com.intext.intextmarket2.views.IFunctionsFragment;
 import com.intext.intextmarket2.views.IMarketFragment;
 
@@ -29,7 +30,8 @@ import com.intext.intextmarket2.views.IMarketFragment;
  * limitations under the License.
  */
 
-public class MainActivity extends AppCompatActivity implements IFunctionsFragment.IMarketFunctionsListener, IMarketFragment.IMarketListener {
+public class MainActivity extends AppCompatActivity implements IBusinessFragment.IMarketBusinessListener,
+        IFunctionsFragment.IMarketFunctionsListener, IMarketFragment.IMarketListener {
 
     /**
      * INTEXT MARKET-SDK

@@ -73,6 +73,9 @@ public class IMarketFragment extends Fragment {
         initFunctionsListener();
         initPermissions();
 
+        IBusinessFragment iBusinessFragment = new IBusinessFragment();
+        iBusinessFragment.show(Objects.requireNonNull(getFragmentManager()), "Wepa");
+
         return IMarketRoot;
     }
 

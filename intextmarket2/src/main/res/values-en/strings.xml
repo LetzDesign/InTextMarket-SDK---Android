@@ -5,9 +5,11 @@
 
     <string name="app_name">InTextMarket</string>
 
+    <string name="business_fragment_header">Search Results - InTextMarket</string>
+
     <!-- Dialogs Titles-->
-    <string name="root_container_title">Error de Contenedor</string>
+    <string name="root_container_title">Root Container Error</string>
 
     <!--Dialogs Messages-->
-    <string name="root_container_message">El contenedor para el fragmento no existe...</string>
+    <string name="root_container_message">The fragment container not exists…</string>
 </resources>
