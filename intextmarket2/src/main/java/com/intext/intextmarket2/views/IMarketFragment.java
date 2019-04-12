@@ -14,11 +14,13 @@ import android.widget.ImageButton;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -61,7 +63,7 @@ public class IMarketFragment extends Fragment {
         IMarketRoot = inflater.inflate(R.layout.fragment_imarket, container, false);
 
         Bundle bundle = this.getArguments();
-        root = bundle.getInt("fragment_container", 0);
+        root = Objects.requireNonNull(bundle).getInt("fragment_container", 0);
 
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 
@@ -82,8 +84,10 @@ public class IMarketFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof IMarketListener)
-            iMarketListener = (IMarketListener)context;
+        if(context instanceof IMarketListener) {
+            iMarketListener = (IMarketListener) context;
+            initDB(context);
+        }
         else{
             throw new RuntimeException(context.toString()
                     + " must implement IMarketListener");
@@ -164,5 +168,9 @@ public class IMarketFragment extends Fragment {
     private void initPermissions() {
         IMarketPermission iMarketPermission = new IMarketPermission(getActivity(), getContext());
         iMarketPermission.checkPermissions();
+    }
+
+    private void initDB(Context context){
+        IDBManager.init(context);
     }
 }

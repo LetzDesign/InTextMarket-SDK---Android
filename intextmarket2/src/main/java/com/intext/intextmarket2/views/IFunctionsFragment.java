@@ -12,8 +12,11 @@ import android.widget.ImageButton;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
+
+import java.util.Objects;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -58,11 +61,13 @@ public class IFunctionsFragment extends Fragment {
         IMarketRoot = inflater.inflate(R.layout.fragment_ifunctions, container, false);
 
         Bundle bundle = this.getArguments();
-        root = bundle.getInt("fragment_container", 0);
+        root = Objects.requireNonNull(bundle).getInt("fragment_container", 0);
 
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        Objects.requireNonNull(getActivity()).getWindow()
+                .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE |
+                        WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         initPermissions();
         initCloseAndBackFunctionFragment();

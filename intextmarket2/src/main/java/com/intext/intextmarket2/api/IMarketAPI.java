@@ -133,5 +133,4 @@ public class IMarketAPI {
         public int ACCOUNT_ID;
         public String AUTH_END_POINT;
     }
-
 }

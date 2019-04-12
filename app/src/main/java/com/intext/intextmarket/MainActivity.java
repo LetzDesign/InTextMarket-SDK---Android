@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.IMarketAPI;
+import com.intext.intextmarket2.db.IMDataBase;
 import com.intext.intextmarket2.views.IBusinessFragment;
 import com.intext.intextmarket2.views.IFunctionsFragment;
 import com.intext.intextmarket2.views.IMarketFragment;
