@@ -75,6 +75,10 @@ public class IFunctionsFragment extends Fragment {
         super.onAttach(context);
         if(context instanceof IMarketFunctionsListener)
             iMarketFunctionsListener = (IMarketFunctionsListener)context;
+        else{
+            throw new RuntimeException(context.toString()
+                    + " must implement IMarketFunctionsListener");
+        }
     }
 
     @Override

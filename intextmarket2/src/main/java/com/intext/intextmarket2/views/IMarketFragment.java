@@ -81,6 +81,10 @@ public class IMarketFragment extends Fragment {
         super.onAttach(context);
         if(context instanceof IMarketListener)
             iMarketListener = (IMarketListener)context;
+        else{
+            throw new RuntimeException(context.toString()
+                    + " must implement IMarketListener");
+        }
     }
 
     @Override
