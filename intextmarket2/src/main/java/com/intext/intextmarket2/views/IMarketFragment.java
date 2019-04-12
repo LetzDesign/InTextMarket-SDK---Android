@@ -77,10 +77,10 @@ public class IMarketFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-        if(getActivity() instanceof IMarketListener)
-            iMarketListener = (IMarketListener)getActivity();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof IMarketListener)
+            iMarketListener = (IMarketListener)context;
     }
 
     @Override
@@ -89,12 +89,18 @@ public class IMarketFragment extends Fragment {
         initInterfaceCallbacks(view);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        iMarketListener = null;
+    }
+
     private void initFunctionsListener() {
         ImageButton functionsButton = IMarketRoot.findViewById(R.id.functions_msg_id);
         functionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IMarketManager.showIMarketFunctions(getFragmentManager(), root);
+                IMarketManager.showIMarketFunctions(Objects.requireNonNull(getFragmentManager()), root);
             }
         });
     }

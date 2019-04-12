@@ -1,5 +1,6 @@
 package com.intext.intextmarket2.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -70,16 +71,22 @@ public class IFunctionsFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-        if(getActivity() instanceof IMarketFunctionsListener)
-            iMarketFunctionsListener = (IMarketFunctionsListener)getActivity();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof IMarketFunctionsListener)
+            iMarketFunctionsListener = (IMarketFunctionsListener)context;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initInterfaceCallbacks(view);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        iMarketFunctionsListener = null;
     }
 
     private void initCloseAndBackFunctionFragment() {

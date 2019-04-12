@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--SPANISH LANGUAGE-->
+    <!--ENGLISH LANGUAGE-->
 
     <string name="app_name">InTextMarket</string>
 
@@ -10,7 +10,4 @@
 
     <!--Dialogs Messages-->
     <string name="root_container_message">El contenedor para el fragmento no existe...</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
