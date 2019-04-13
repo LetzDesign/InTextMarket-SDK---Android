@@ -7,20 +7,24 @@ import android.support.text.emoji.widget.EmojiEditText;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
+import com.intext.intextmarket2.location.IMLocation;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -122,16 +126,40 @@ public class IMarketFragment extends Fragment {
         sendButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
                 IMarketPermission iMarketPermission = new IMarketPermission(getActivity(), getContext());
+
                 if(iMarketPermission.locationHasPermission()){
-                    IMarketDialogs.genericDialog(
-                            IMarketRoot.getContext(),
-                            "Press and hold Event trigger...",
-                            "Calling API...\nMessage: " + emojiEditText.getText().toString() +
-                            "\nToken: " + API_TOKEN,
-                            IMarketDialogs.IMDialogType.SUCCESS
-                    );
-                    cleanEmojiEditText();
+
+                    IMLocation imLocation = new IMLocation(getContext(), getActivity());
+                    imLocation.init();
+
+                    if(imLocation.getLatitude() != null && imLocation.getLongitude() != null){
+                        try {
+
+                            String msg = emojiEditText.getText().toString();
+                            cleanEmojiEditText();
+                            JSONObject jsonObject = IMUtilities.createIMarketTextObject(
+                                    getActivity(),
+                                    getContext(),
+                                    msg,
+                                    imLocation.getLatitude(),
+                                    imLocation.getLongitude()
+                            );
+
+                            Toast.makeText(
+                                    getContext(),
+                                    "IMarket Object:" +
+                                            jsonObject.toString(),
+                                    Toast.LENGTH_LONG
+                            ).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }else{
+                        IMarketDialogs.turnOnLocationAlertIntent(getContext());
+                    }
                 }else{
                     IMarketDialogs.locationNotHavePermission(getContext(), iMarketPermission);
                 }
@@ -154,7 +182,6 @@ public class IMarketFragment extends Fragment {
     }
 
     private void initUIElementsAndInterfaceCallbacks(View v) {
-        emojiEditText = v.findViewById(R.id.iMarketTextView);
 
         sendButton = v.findViewById(R.id.send_msg_id);
         sendButton.setEnabled(false);
@@ -169,6 +196,7 @@ public class IMarketFragment extends Fragment {
             }
         });
 
+        emojiEditText = v.findViewById(R.id.iMarketTextView);
         emojiEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

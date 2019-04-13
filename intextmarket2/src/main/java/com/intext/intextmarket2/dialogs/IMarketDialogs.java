@@ -83,6 +83,7 @@ public class IMarketDialogs {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         c.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        dialog.dismiss();
                     }
                 }
         );

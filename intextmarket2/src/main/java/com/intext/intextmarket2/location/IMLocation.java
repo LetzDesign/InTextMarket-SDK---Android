@@ -65,7 +65,6 @@ public class IMLocation extends Service implements LocationListener {
         getLocation();
     }
 
-
     private void getLocation() {
         if (isNetworkOn) {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
