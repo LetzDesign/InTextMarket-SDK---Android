@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.text.emoji.widget.EmojiEditText;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +99,7 @@ public class IMarketFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initInterfaceCallbacks(view);
+        initUIElementsAndInterfaceCallbacks(view);
     }
 
     @Override
@@ -150,10 +153,12 @@ public class IMarketFragment extends Fragment {
         }
     }
 
-    private void initInterfaceCallbacks(View v) {
+    private void initUIElementsAndInterfaceCallbacks(View v) {
         emojiEditText = v.findViewById(R.id.iMarketTextView);
 
         sendButton = v.findViewById(R.id.send_msg_id);
+        sendButton.setEnabled(false);
+        sendButton.setImageAlpha(0x3F);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +166,29 @@ public class IMarketFragment extends Fragment {
                     iMarketListener.onSendClick(emojiEditText.getText().toString());
 
                 cleanEmojiEditText();
+            }
+        });
+
+        emojiEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length() < 1){
+                    sendButton.setEnabled(false);
+                    sendButton.setImageAlpha(0x3F);
+                }else{
+                    sendButton.setEnabled(true);
+                    sendButton.setImageAlpha(0xFF);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
