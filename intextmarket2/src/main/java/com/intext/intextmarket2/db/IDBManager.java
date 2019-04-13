@@ -1,6 +1,7 @@
 package com.intext.intextmarket2.db;
 
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Handler;
@@ -36,12 +37,12 @@ public class IDBManager {
 
     private static final String DATABASE_NAME = "imarket_db";
     private static IMDataBase imDataBase;
-    private static IMAccess imAccess = null;
 
     public static void init(Context context){
         imDataBase = Room.databaseBuilder(context,
                 IMDataBase.class, DATABASE_NAME)
                 .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
                 .build();
     }
 
@@ -117,23 +118,8 @@ public class IDBManager {
     }
 
     public static IMAccess selectAllAccessData(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        imAccess = imDataBase.daoAccess()
-                                .getIMAccessData();
-                    }
-                });
-                Looper.loop();
-            }
-        }).start();
-
-        return imAccess;
+        return imDataBase.daoAccess()
+                .getIMAccessData();
     }
 }
 

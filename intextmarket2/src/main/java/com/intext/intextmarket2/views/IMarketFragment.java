@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.db.IDBManager;
+import com.intext.intextmarket2.db.IMDataBase;
 import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
@@ -174,10 +175,5 @@ public class IMarketFragment extends Fragment {
 
     private void initDB(Context context){
         IDBManager.init(context);
-
-        IMAccess imAccess = IDBManager.selectAllAccessData();
-        if(imAccess != null){
-            Log.d("CHECK IDBManager Select", imAccess.getToken());
-        }
     }
 }

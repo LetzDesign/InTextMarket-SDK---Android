@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.res.Configuration;
 
+import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.db.IMDataBase;
 
 /**
@@ -29,6 +30,7 @@ import com.intext.intextmarket2.db.IMDataBase;
 public class IMApp extends Application {
 
     private IMDataBase imDataBase;
+    public IMApp imApp;
 
     @Override
     public void onCreate() {

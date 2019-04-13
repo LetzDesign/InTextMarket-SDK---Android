@@ -1,8 +1,10 @@
 package com.intext.intextmarket2.db;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.intext.intextmarket2.db.model.IMAccess;
@@ -30,7 +32,7 @@ import com.intext.intextmarket2.db.model.IMAccess;
 @Dao
 public interface DaoAccess {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertIMAccess(IMAccess imAccess);
 
     @Query("SELECT * FROM IMAccess ORDER BY inserted_at DESC")
