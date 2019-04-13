@@ -31,8 +31,11 @@ public class IMarketPermission {
 
     private static final int PERMISSION_CAMERA = 1;
     private static final int PERMISSION_FINE_LOCATION = 2;
+    private static final int PERMISSION_FINE_CLOCATION = 6;
     private static final int PERMISSION_REC_AUDIO = 3;
     private static final int PERMISSION_TO_ALL = 444;
+    private static final int PERMISSION_TO_SMS = 4;
+    private static final int PERMISSION_TO_CONTACTS = 5;
 
     private Activity activity;
     private Context context;
@@ -115,14 +118,26 @@ public class IMarketPermission {
 
     private int getGlobalPermissionID() {
 
-        int returnPermission = PERMISSION_CAMERA;
+        int returnPermission;
 
         switch (permission){
             case Manifest.permission.ACCESS_FINE_LOCATION:
                 returnPermission = PERMISSION_FINE_LOCATION;
                 break;
+            case Manifest.permission.ACCESS_COARSE_LOCATION:
+                returnPermission = PERMISSION_FINE_CLOCATION;
+                break;
             case Manifest.permission.RECORD_AUDIO:
                 returnPermission = PERMISSION_REC_AUDIO;
+                break;
+            case Manifest.permission.READ_SMS:
+                returnPermission = PERMISSION_TO_SMS;
+                break;
+            case Manifest.permission.READ_CONTACTS:
+                returnPermission = PERMISSION_TO_CONTACTS;
+                break;
+            default:
+                returnPermission = PERMISSION_CAMERA;
                 break;
         }
 
