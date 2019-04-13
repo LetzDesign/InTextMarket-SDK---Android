@@ -9,8 +9,6 @@ import android.provider.Settings;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 
-import java.util.ArrayList;
-
 /**
  * Created by Ing. Letzer Cartagena Negron
  * InTextChat @2019
