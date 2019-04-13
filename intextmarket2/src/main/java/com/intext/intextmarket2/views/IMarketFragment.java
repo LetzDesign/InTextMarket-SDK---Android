@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.text.emoji.widget.EmojiEditText;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.db.IDBManager;
+import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
@@ -172,5 +174,10 @@ public class IMarketFragment extends Fragment {
 
     private void initDB(Context context){
         IDBManager.init(context);
+
+        IMAccess imAccess = IDBManager.selectAllAccessData();
+        if(imAccess != null){
+            Log.d("CHECK IDBManager Select", imAccess.getToken());
+        }
     }
 }

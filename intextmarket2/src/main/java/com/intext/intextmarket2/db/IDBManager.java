@@ -36,6 +36,7 @@ public class IDBManager {
 
     private static final String DATABASE_NAME = "imarket_db";
     private static IMDataBase imDataBase;
+    private static IMAccess imAccess = null;
 
     public static void init(Context context){
         imDataBase = Room.databaseBuilder(context,
@@ -72,6 +73,67 @@ public class IDBManager {
                 Looper.loop();
             }
         }).start();
+    }
+
+    public static int countAccessRow(){
+        return imDataBase.daoAccess()
+                .countAccessData();
+    }
+
+    public static void deleteAccessTable(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imDataBase.daoAccess()
+                                .deleteIMAccessData();
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    public static void deleteAccessRow(final IMAccess imAccess){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imDataBase.daoAccess()
+                                .deleteIMAccess(imAccess);
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    public static IMAccess selectAllAccessData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imAccess = imDataBase.daoAccess()
+                                .getIMAccessData();
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
+
+        return imAccess;
     }
 }
 
