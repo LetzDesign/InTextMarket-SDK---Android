@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
      * @author INTEXT SOFTWARE LLC
      */
 
+    //Business Api access token!
     private String API_TOKEN;
 
     @Override
