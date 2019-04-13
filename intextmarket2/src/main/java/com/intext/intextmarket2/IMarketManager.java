@@ -38,10 +38,11 @@ public class IMarketManager {
         iMarketAPI.apiAccountValidation();
     }
 
-    public static void builder(FragmentManager fragmentManager, int fragmentContainer){
+    public static void builder(FragmentManager fragmentManager, int fragmentContainer, String token){
 
         Bundle bundle = new Bundle();
         bundle.putInt("fragment_container", fragmentContainer);
+        bundle.putString("api_token", token);
         IMarketFragment iMarketFragment = new IMarketFragment();
         iMarketFragment.setArguments(bundle);
 
@@ -50,10 +51,11 @@ public class IMarketManager {
         fragmentTransaction.commit();
     }
 
-    public static void showIMarketFunctions(FragmentManager fragmentManager, int fragmentContainer){
+    public static void showIMarketFunctions(FragmentManager fragmentManager, int fragmentContainer, String token){
 
         Bundle bundle = new Bundle();
         bundle.putInt("fragment_container", fragmentContainer);
+        bundle.putString("api_token", token);
         IFunctionsFragment iFunctionsFragment = new IFunctionsFragment();
         iFunctionsFragment.setArguments(bundle);
 

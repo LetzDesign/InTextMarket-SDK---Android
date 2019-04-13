@@ -91,32 +91,6 @@ public class IMBusinessHistory {
 
     public IMBusinessHistory() {}
 
-    public IMBusinessHistory(int id, int categoryId, int businessId, int campaignId, int jobId, float wordBit, int clientSort, boolean delivery, boolean carryOut, boolean shipping, boolean open, String openHours, String openDays, double latitude, double longitude, String virtualBusiness, List<String> matchWords, String name, String address, String phone, String email, String siteUrl, String icon) {
-        this.id = id;
-        this.categoryId = categoryId;
-        this.businessId = businessId;
-        this.campaignId = campaignId;
-        this.jobId = jobId;
-        this.wordBit = wordBit;
-        this.clientSort = clientSort;
-        this.delivery = delivery;
-        this.carryOut = carryOut;
-        this.shipping = shipping;
-        this.open = open;
-        this.openHours = openHours;
-        this.openDays = openDays;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.virtualBusiness = virtualBusiness;
-        this.matchWords = matchWords;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.siteUrl = siteUrl;
-        this.icon = icon;
-    }
-
     public int getId() {
         return id;
     }

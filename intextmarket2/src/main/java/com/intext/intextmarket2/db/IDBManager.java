@@ -1,7 +1,6 @@
 package com.intext.intextmarket2.db;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Handler;
@@ -46,7 +45,7 @@ public class IDBManager {
                 .build();
     }
 
-    public static void insertAccessData(final String token){
+    public static void insertAccessData(final String token, final int accountId){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -61,11 +60,12 @@ public class IDBManager {
                         imDataBase.daoAccess()
                                 .deleteIMAccessData();
 
-                        IMAccess imAccess = new IMAccess(
-                                IMUtilities.autoPing(),
-                                token,
-                                insertAt
-                        );
+                        IMAccess imAccess = new IMAccess();
+
+                        imAccess.setAccountId(accountId);
+                        imAccess.setId(IMUtilities.autoPing());
+                        imAccess.setInserted_at(insertAt);
+                        imAccess.setToken(token);
 
                         imDataBase.daoAccess()
                                 .insertIMAccess(imAccess);

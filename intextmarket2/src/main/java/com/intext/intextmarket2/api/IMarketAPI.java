@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.interfaces.IMarketApiAuth;
 import com.intext.intextmarket2.api.pojo.APIAuthResponse;
+import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.utils.IMUtilities;
 
@@ -83,26 +84,32 @@ public class IMarketAPI {
                 public void onResponse(Call<APIAuthResponse> call, Response<APIAuthResponse> response) {
                     if(response.code() == 200){
                         apiAuthResponse = response.body();
-                        if(apiAuthResponse.getStatus() == 200){
+                        if(apiAuthResponse != null){
+                            if(apiAuthResponse.getStatus() == 200){
 
-                            IMarketManager.initIMarketEmoji(context);
-                            IMarketManager.builder(fragmentManager, layout);
+                                IDBManager.init(context);
+                                IDBManager.insertAccessData(
+                                        apiAuthResponse.getToken(),
+                                        apiAuthResponse.getAccountID()
+                                );
 
-                            IMarketDialogs.genericDialog(
-                                    context,
-                                    "Auth API Testing",
-                                    "Response: \nStatus: " +
-                                            String.valueOf(apiAuthResponse.getStatus()) +
-                                            "\nToken: " + apiAuthResponse.getToken() +
-                                            "\nAccountID: " + String.valueOf(apiAuthResponse.getAccountID()),
-                                    IMarketDialogs.IMDialogType.SUCCESS
-                            );
+                                IMarketManager.initIMarketEmoji(context);
+                                IMarketManager.builder(fragmentManager, layout, apiAuthResponse.getToken());
+
+                            }else{
+                                IMarketDialogs.genericDialog(
+                                        context,
+                                        "INTextMarket API Auth Fail",
+                                        "Please check your application credentials...",
+                                        IMarketDialogs.IMDialogType.WARNING
+                                );
+                            }
                         }else{
                             IMarketDialogs.genericDialog(
                                     context,
                                     "INTextMarket API Auth Fail",
-                                    "Please check your appliacation credentials...",
-                                    IMarketDialogs.IMDialogType.WARNING
+                                    "Please check your application credentials...",
+                                    IMarketDialogs.IMDialogType.ERROR
                             );
                         }
                     }

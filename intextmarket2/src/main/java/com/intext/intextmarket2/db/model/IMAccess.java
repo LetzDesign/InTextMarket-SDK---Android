@@ -31,16 +31,11 @@ public class IMAccess {
     @PrimaryKey
     private String id;
 
+    private int accountId;
     private String token;
     private String inserted_at;
 
     public IMAccess() {}
-
-    public IMAccess(@NonNull String id, String token, String inserted_at) {
-        this.id = id;
-        this.token = token;
-        this.inserted_at = inserted_at;
-    }
 
     public String getId() {
         return id;
@@ -48,6 +43,14 @@ public class IMAccess {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public String getToken() {

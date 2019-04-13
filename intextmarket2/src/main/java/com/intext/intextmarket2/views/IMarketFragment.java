@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.text.emoji.widget.EmojiEditText;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,11 @@ import android.widget.ImageButton;
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.db.IDBManager;
-import com.intext.intextmarket2.db.IMDataBase;
-import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
 import java.util.Objects;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -49,6 +45,7 @@ public class IMarketFragment extends Fragment {
 
     private View IMarketRoot;
     private int root;
+    private String API_TOKEN;
     private IMarketListener iMarketListener;
     private ImageButton sendButton;
     private EmojiEditText emojiEditText;
@@ -57,6 +54,7 @@ public class IMarketFragment extends Fragment {
 
     public interface IMarketListener{
         void onSendClick(String message);
+        void onGetApiToken(String token);
     }
 
     @Nullable
@@ -67,6 +65,7 @@ public class IMarketFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         root = Objects.requireNonNull(bundle).getInt("fragment_container", 0);
+        API_TOKEN = Objects.requireNonNull(bundle).getString("api_token", "");
 
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 
@@ -77,9 +76,6 @@ public class IMarketFragment extends Fragment {
         initPressAndHoldListener();
         initFunctionsListener();
         initPermissions();
-
-        IBusinessFragment iBusinessFragment = new IBusinessFragment();
-        iBusinessFragment.show(Objects.requireNonNull(getFragmentManager()), "Wepa");
 
         return IMarketRoot;
     }
@@ -114,7 +110,7 @@ public class IMarketFragment extends Fragment {
         functionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IMarketManager.showIMarketFunctions(Objects.requireNonNull(getFragmentManager()), root);
+                IMarketManager.showIMarketFunctions(Objects.requireNonNull(getFragmentManager()), root, API_TOKEN);
             }
         });
     }
@@ -166,6 +162,9 @@ public class IMarketFragment extends Fragment {
                 cleanEmojiEditText();
             }
         });
+
+        if(!API_TOKEN.equals(""))
+            iMarketListener.onGetApiToken(API_TOKEN);
     }
 
     private void initPermissions() {

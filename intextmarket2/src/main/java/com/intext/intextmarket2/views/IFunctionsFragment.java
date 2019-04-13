@@ -41,6 +41,7 @@ public class IFunctionsFragment extends Fragment {
 
     private View IMarketRoot;
     private int root;
+    private String API_TOKEN;
     private IMarketFunctionsListener iMarketFunctionsListener;
 
     public IFunctionsFragment(){}
@@ -61,6 +62,7 @@ public class IFunctionsFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         root = Objects.requireNonNull(bundle).getInt("fragment_container", 0);
+        API_TOKEN = Objects.requireNonNull(bundle).getString("api_token", "");
 
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 
@@ -102,7 +104,7 @@ public class IFunctionsFragment extends Fragment {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IMarketManager.builder(getFragmentManager(), root);
+                IMarketManager.builder(Objects.requireNonNull(getFragmentManager()), root, API_TOKEN);
             }
         });
     }

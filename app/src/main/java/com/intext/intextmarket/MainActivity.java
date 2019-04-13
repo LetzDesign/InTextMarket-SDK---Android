@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
      * @author INTEXT SOFTWARE LLC
      */
 
+    private String API_TOKEN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,5 +95,11 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     @Override
     public void onSendClick(String message) {
         Toast.makeText(this, "On Fragment Send message click event. \nMessage: "+ message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetApiToken(String token) {
+        API_TOKEN = token;
+        Toast.makeText(this,"Token: " + API_TOKEN, Toast.LENGTH_SHORT).show();
     }
 }

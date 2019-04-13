@@ -25,7 +25,7 @@ import com.intext.intextmarket2.db.model.IMAccess;
  * limitations under the License.
  */
 
-@Database(entities = {IMAccess.class}, version = 1, exportSchema = false)
+@Database(entities = {IMAccess.class}, version = 2, exportSchema = false)
 public abstract class IMDataBase extends RoomDatabase {
     public abstract DaoAccess daoAccess();
 }
