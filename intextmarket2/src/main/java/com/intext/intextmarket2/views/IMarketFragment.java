@@ -124,7 +124,8 @@ public class IMarketFragment extends Fragment {
                     IMarketDialogs.genericDialog(
                             IMarketRoot.getContext(),
                             "Press and hold Event trigger...",
-                            "Calling API...\nMessage: " + emojiEditText.getText().toString(),
+                            "Calling API...\nMessage: " + emojiEditText.getText().toString() +
+                            "\nToken: " + API_TOKEN,
                             IMarketDialogs.IMDialogType.SUCCESS
                     );
                     cleanEmojiEditText();

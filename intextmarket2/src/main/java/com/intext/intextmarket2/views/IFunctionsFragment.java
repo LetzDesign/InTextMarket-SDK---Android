@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.location.IMLocation;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 import com.intext.intextmarket2.utils.IMUtilities;
 
@@ -72,6 +74,16 @@ public class IFunctionsFragment extends Fragment {
 
         initPermissions();
         initCloseAndBackFunctionFragment();
+
+        IMLocation imLocation = new IMLocation(getContext(), getActivity());
+        imLocation.init();
+
+        Toast.makeText(
+                getContext(),
+                "Latitude: " + imLocation.getLatitude()
+                        + "\nLongitude: " + imLocation.getLongitude(),
+                Toast.LENGTH_SHORT
+        ).show();
 
         return IMarketRoot;
     }

@@ -3,9 +3,13 @@ package com.intext.intextmarket2.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.permissions.IMarketPermission;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -63,6 +67,39 @@ public class IMarketDialogs {
                 iMarketPermission.checkLocationPermission();
             }
         });
+
+        alertDialog.show();
+    }
+
+    public static void turnOnLocationAlertIntent(final Context c){
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+        alertDialog.setTitle("IMarket Location Unavailable");
+        alertDialog.setMessage("Please verify your network status. " +
+                "Please try again!");
+        alertDialog.setIcon(R.drawable.ic_round_location_off_24px);
+
+        alertDialog.setButton(
+                AlertDialog.BUTTON_POSITIVE,
+                "Turn On Location",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        c.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                }
+        );
+
+        alertDialog.setButton(
+                AlertDialog.BUTTON_NEGATIVE,
+                "CLOSE",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                    }
+                }
+
+        );
 
         alertDialog.show();
     }
