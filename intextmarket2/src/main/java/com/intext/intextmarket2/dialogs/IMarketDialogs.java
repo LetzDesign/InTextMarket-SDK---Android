@@ -10,7 +10,7 @@ import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 
 /**
- * Created by Ing. Letzer Cartagena Negron
+ * Created by Ing. Letzer Cartagena Negrón
  * InTextChat @2019
  * @author INTEXT SOFTWARE LLC
  *

@@ -40,6 +40,7 @@ public class IMarketPermission {
     private String[] permissions = {
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.RECORD_AUDIO
     };
 
@@ -92,7 +93,10 @@ public class IMarketPermission {
         if(!locationHasPermission()){
             ActivityCompat.requestPermissions(
                     activity,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    },
                     PERMISSION_FINE_LOCATION
             );
         }
