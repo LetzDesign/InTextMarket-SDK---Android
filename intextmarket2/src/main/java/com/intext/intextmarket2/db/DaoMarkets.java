@@ -35,14 +35,17 @@ public interface DaoMarkets {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMarketsRequest(IMTempMarkets imTempMarkets);
 
-    @Query("SELECT * FROM IMTempMarkets")
-    List<IMTempMarkets> selectAllMarketRequested();
-
     @Query("DELETE FROM IMTempMarkets")
     void deleteAllIMarkersRequests();
 
     @Query("DELETE FROM IMTempMarkets WHERE id = :id")
     void deleteMarketsFirstRequest(int id);
+
+    @Query("SELECT * FROM IMTempMarkets")
+    List<IMTempMarkets> selectAllMarketRequested();
+
+    @Query("SELECT * FROM IMTempMarkets WHERE id = :id")
+    IMTempMarkets selectMarketRequestById(int id);
 
     @Query("SELECT COUNT(*) FROM IMTempMarkets")
     int countIMarketsRequests();
