@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.api.IMarketAPI;
+import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.location.IMLocation;
@@ -140,12 +142,15 @@ public class IMarketFragment extends Fragment {
                             String msg = emojiEditText.getText().toString();
                             cleanEmojiEditText();
                             JSONObject jsonObject = IMUtilities.createIMarketTextObject(
-                                    getActivity(),
-                                    getContext(),
+                                    getActivity(),//TODO is necessary?
+                                    getContext(),//TODO is necessary?
                                     msg,
                                     imLocation.getLatitude(),
                                     imLocation.getLongitude()
                             );
+
+                            IMarketAPI iMarketAPI = new IMarketAPI(getContext());
+                            iMarketAPI.requestAvailableMarketsByLocation(getFragmentManager() ,jsonObject);
 
                             Toast.makeText(
                                     getContext(),
@@ -231,5 +236,6 @@ public class IMarketFragment extends Fragment {
 
     private void initDB(Context context){
         IDBManager.init(context);
+        //IDBManager.deleteAllMarketsRequests();
     }
 }

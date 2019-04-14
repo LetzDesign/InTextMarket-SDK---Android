@@ -5,7 +5,7 @@
 
     <string name="app_name">InTextMarket</string>
 
-    <string name="business_fragment_header">Resultados de la Busqueda - InTextMarket</string>
+    <string name="business_fragment_header">Categorias - InTextMarket</string>
 
     <!-- Dialogs Titles-->
     <string name="root_container_title">Error de Contenedor</string>

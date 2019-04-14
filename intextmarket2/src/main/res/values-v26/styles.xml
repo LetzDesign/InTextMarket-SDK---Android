@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="CategoryButton">
+        <item name="android:background">@drawable/imemojishapebk</item>
+        <item name="android:backgroundTint">@color/icons</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:autofilledHighlight">@color/colorAccent</item>
+        <item name="android:elevation">3dp</item>
+    </style>
+</resources>

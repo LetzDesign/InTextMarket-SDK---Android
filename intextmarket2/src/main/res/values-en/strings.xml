@@ -5,7 +5,7 @@
 
     <string name="app_name">InTextMarket</string>
 
-    <string name="business_fragment_header">Search Results - InTextMarket</string>
+    <string name="business_fragment_header">Categories - InTextMarket</string>
 
     <!-- Dialogs Titles-->
     <string name="root_container_title">Root Container Error</string>

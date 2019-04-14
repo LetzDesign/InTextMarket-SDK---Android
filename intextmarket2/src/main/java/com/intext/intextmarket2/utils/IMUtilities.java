@@ -10,6 +10,9 @@ import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 
@@ -66,6 +69,11 @@ public class IMUtilities {
         return new Retrofit.Builder()
                 .baseUrl(url + "/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
+    }
+
+    public static String convertPojoToJson(Object pojo){
+        Gson stringConverter = new GsonBuilder().create();
+        return stringConverter.toJson(pojo);
     }
 
     public static JSONObject createIMarketTextObject(

@@ -1,10 +1,13 @@
 package com.intext.intextmarket2.db;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
-import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.db.model.IMTempMarkets;
+
+import java.util.List;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -26,8 +29,18 @@ import com.intext.intextmarket2.db.model.IMTempMarkets;
  * limitations under the License.
  */
 
-@Database(entities = {IMAccess.class, IMTempMarkets.class}, version = 3, exportSchema = false)
-public abstract class IMDataBase extends RoomDatabase {
-    public abstract DaoAccess daoAccess();
-    public abstract DaoMarkets daoMarkets();
+@Dao
+public interface DaoMarkets {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertMarketsRequest(IMTempMarkets imTempMarkets);
+
+    @Query("SELECT * FROM IMTempMarkets")
+    List<IMTempMarkets> selectAllMarketRequested();
+
+    @Query("DELETE FROM IMTempMarkets")
+    void deleteAllIMarkersRequests();
+
+    @Query("SELECT COUNT(*) FROM IMTempMarkets")
+    int countIMarketsRequests();
 }

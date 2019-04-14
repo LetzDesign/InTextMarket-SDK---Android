@@ -3,11 +3,15 @@ package com.intext.intextmarket2.views;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
+import com.intext.intextmarket2.views.adapters.IMarketCategoryAdapter;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -33,18 +37,27 @@ public class IBusinessFragment extends DialogFragment {
 
     private IMarketBusinessListener iMarketBusinessListener;
     private View IBusinessRoot;
+    private RecyclerView recyclerView;
+    private IMarketCategoryAdapter iMarketCategoryAdapter;
+    private IMBusinessResponse imBusinessResponse;
 
-    public interface IMarketBusinessListener {
-
-    }
+    public interface IMarketBusinessListener {}
 
     public IBusinessFragment() {}
+
+    public void setImBusinessResponse(IMBusinessResponse imBusinessResponse) {
+        this.imBusinessResponse = imBusinessResponse;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         IBusinessRoot = inflater.inflate(R.layout.fragment_ibusiness, container, false);
+
+        recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new IMarketCategoryAdapter(getContext(), imBusinessResponse));
 
         return IBusinessRoot;
     }

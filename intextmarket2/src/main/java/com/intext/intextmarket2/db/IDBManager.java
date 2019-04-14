@@ -7,10 +7,12 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.intext.intextmarket2.db.model.IMAccess;
+import com.intext.intextmarket2.db.model.IMTempMarkets;
 import com.intext.intextmarket2.utils.IMUtilities;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -45,6 +47,7 @@ public class IDBManager {
                 .build();
     }
 
+    //Access
     public static void insertAccessData(final String token, final int accountId){
         new Thread(new Runnable() {
             @Override
@@ -120,6 +123,62 @@ public class IDBManager {
     public static IMAccess selectAllAccessData(){
         return imDataBase.daoAccess()
                 .getIMAccessData();
+    }
+
+    //Markets requests
+    public static void insertMarketRequest(final String json){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        @SuppressLint("SimpleDateFormat") String insertAt = new SimpleDateFormat("h:mm a")
+                                .format(Calendar.getInstance().getTime());
+
+                        IMTempMarkets imTempMarkets = new IMTempMarkets();
+
+                        imTempMarkets.setId(IMUtilities.autoPing());
+                        imTempMarkets.setJson(json);
+                        imTempMarkets.setInserted_at(insertAt);
+
+                        imDataBase.daoMarkets()
+                                .insertMarketsRequest(imTempMarkets);
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    public static List<IMTempMarkets> selectAllMarketsResquested(){
+        return imDataBase.daoMarkets()
+                .selectAllMarketRequested();
+    }
+
+    public static void deleteAllMarketsRequests(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imDataBase.daoMarkets()
+                                .deleteAllIMarkersRequests();
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    public static int countIMarketsRequestRows(){
+        return imDataBase.daoMarkets()
+                .countIMarketsRequests();
     }
 }
 
