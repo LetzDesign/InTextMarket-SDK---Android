@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.db.model.IMTempMarkets;
@@ -217,15 +216,9 @@ public class IDBManager {
 
                                 imDataBase.daoMarkets()
                                         .insertMarketsRequest(imTempMarkets);
-
-                                IMTempMarkets t = imDataBase.daoMarkets().selectLastMarketInserted();
-                                Log.d("LAST MSG", t.getInserted_at());
-
                             }else{
                                 imDataBase.daoMarkets()
                                         .insertMarketsRequest(imTempMarkets);
-
-                                Log.d("LAST MSG", imDataBase.daoMarkets().selectMarketRequestLastMessage());
                             }
                         }
                     }

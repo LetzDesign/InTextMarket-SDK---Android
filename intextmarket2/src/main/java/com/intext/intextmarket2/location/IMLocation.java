@@ -1,7 +1,6 @@
 package com.intext.intextmarket2.location;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
