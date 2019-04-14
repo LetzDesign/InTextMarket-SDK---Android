@@ -92,7 +92,7 @@ public class IMarketCategoryAdapter extends RecyclerView.Adapter<IMarketCategory
 
     @Override
     public int getItemCount() {
-        return imBusinessResponse.getService().getCategories().size();
+        return imBusinessResponse.getService().getBusiness().size();
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{

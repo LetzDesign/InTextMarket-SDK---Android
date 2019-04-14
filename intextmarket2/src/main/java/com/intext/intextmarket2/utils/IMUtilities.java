@@ -12,7 +12,6 @@ import android.telephony.TelephonyManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 
