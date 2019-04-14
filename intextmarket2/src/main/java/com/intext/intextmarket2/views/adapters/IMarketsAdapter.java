@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,27 +35,27 @@ import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
  * limitations under the License.
  */
 
-public class IMarketCategoryAdapter extends RecyclerView.Adapter<IMarketCategoryAdapter.CategoryViewHolder>{
+public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.CategoryViewHolder>{
 
     private Context context;
     private IMBusinessResponse imBusinessResponse;
 
-    public IMarketCategoryAdapter(Context context, IMBusinessResponse imBusinessResponse) {
+    public IMarketsAdapter(Context context, IMBusinessResponse imBusinessResponse) {
         this.context = context;
         this.imBusinessResponse = imBusinessResponse;
     }
 
     @NonNull
     @Override
-    public IMarketCategoryAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View categoryView = LayoutInflater.from(viewGroup.getContext())
+    public IMarketsAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View businessView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_icategory, viewGroup,false);
 
-        return new CategoryViewHolder(categoryView);
+        return new CategoryViewHolder(businessView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IMarketCategoryAdapter.CategoryViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull IMarketsAdapter.CategoryViewHolder viewHolder, int i) {
 
         final Business businessToHolder = imBusinessResponse.getService().getBusiness().get(i);
 

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
-import com.intext.intextmarket2.views.adapters.IMarketCategoryAdapter;
+import com.intext.intextmarket2.views.adapters.IMarketsAdapter;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -38,7 +38,7 @@ public class IBusinessFragment extends DialogFragment {
     private IMarketBusinessListener iMarketBusinessListener;
     private View IBusinessRoot;
     private RecyclerView recyclerView;
-    private IMarketCategoryAdapter iMarketCategoryAdapter;
+    private IMarketsAdapter iMarketCategoryAdapter;
     private IMBusinessResponse imBusinessResponse;
 
     public interface IMarketBusinessListener {}
@@ -57,7 +57,7 @@ public class IBusinessFragment extends DialogFragment {
 
         recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new IMarketCategoryAdapter(getContext(), imBusinessResponse));
+        recyclerView.setAdapter(new IMarketsAdapter(getContext(), imBusinessResponse));
 
         return IBusinessRoot;
     }
