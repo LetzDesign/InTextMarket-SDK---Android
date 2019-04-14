@@ -90,7 +90,7 @@ public class IMUtilities {
         location.put("longitude", longitude);
 
         String phone = IMUtilities.getPhoneNumber(activity, context);
-        String name = "Letzer Cartagena";
+        String name = "Letzer Cartagena";//TODO Change for get current user
 
         client.put("name", name);
         client.put("phone", phone);

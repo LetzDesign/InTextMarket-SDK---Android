@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.IMarketAPI;
-import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.location.IMLocation;
@@ -150,14 +148,7 @@ public class IMarketFragment extends Fragment {
                             );
 
                             IMarketAPI iMarketAPI = new IMarketAPI(getContext());
-                            iMarketAPI.requestAvailableMarketsByLocation(getFragmentManager() ,jsonObject);
-
-                            Toast.makeText(
-                                    getContext(),
-                                    "IMarket Object:" +
-                                            jsonObject.toString(),
-                                    Toast.LENGTH_LONG
-                            ).show();
+                            iMarketAPI.requestAvailableMarketsByLocation(getFragmentManager() ,jsonObject, msg);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

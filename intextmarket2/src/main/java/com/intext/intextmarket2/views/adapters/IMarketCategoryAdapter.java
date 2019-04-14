@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.intext.intextmarket2.R;
@@ -59,6 +60,27 @@ public class IMarketCategoryAdapter extends RecyclerView.Adapter<IMarketCategory
 
         final Business businessToHolder = imBusinessResponse.getService().getBusiness().get(i);
 
+        viewHolder.businessName.setText(businessToHolder.getName());
+        viewHolder.businessEmail.setText(businessToHolder.getEmail());
+
+        switch (businessToHolder.getCategoryId()){
+            case 2:
+                viewHolder.categoryImageButton.setImageResource(R.drawable.ic_department_itx);
+                break;
+            case 3://hospital
+                viewHolder.categoryImageButton.setImageResource(R.drawable.ic_department_itx);
+                break;
+            case 4:
+                viewHolder.categoryImageButton.setImageResource(R.drawable.ic_bank_itx);
+                break;
+            case 5://service
+                viewHolder.categoryImageButton.setImageResource(R.drawable.ic_department_itx);
+                break;
+            default:
+                viewHolder.categoryImageButton.setImageResource(R.drawable.ic_restaurant_itx);
+                break;
+        }
+
         viewHolder.categoryImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +98,14 @@ public class IMarketCategoryAdapter extends RecyclerView.Adapter<IMarketCategory
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{
 
         ImageButton categoryImageButton;
+        TextView businessName, businessEmail;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
             categoryImageButton = itemView.findViewById(R.id.icategory_item_id);
+            businessEmail = itemView.findViewById(R.id.ibusiness_email_id);
+            businessName = itemView.findViewById(R.id.ibusiness_name_id);
         }
     }
 }

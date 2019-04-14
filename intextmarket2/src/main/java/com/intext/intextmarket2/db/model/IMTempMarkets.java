@@ -29,8 +29,10 @@ import android.support.annotation.NonNull;
 public class IMTempMarkets {
 
     @NonNull
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String message;
 
     private String json;
 
@@ -40,12 +42,20 @@ public class IMTempMarkets {
     public IMTempMarkets() {}
 
     @NonNull
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(@NonNull int id) {
         this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getJson() {

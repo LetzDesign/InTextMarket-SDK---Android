@@ -4,9 +4,21 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="IBusinessFragmentSubHeader">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondaryText</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="CategoryButton">
         <item name="android:background">@drawable/imemojishapebk</item>
         <item name="android:padding">4dp</item>
         <item name="android:autofilledHighlight" tools:targetApi="o">@color/colorAccent</item>
     </style>
+
+    <style name="IMarketActionButton">
+        <item name="android:background">@drawable/imemojishapebk</item>
+    </style>
+
+
 </resources>

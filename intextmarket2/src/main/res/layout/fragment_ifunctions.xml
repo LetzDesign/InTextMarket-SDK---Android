@@ -62,18 +62,18 @@
             android:layout_marginEnd="10dp"
             android:elevation="3dp"
             android:src="@drawable/ic_round_videocam_24px"
-            app:layout_constraintBottom_toBottomOf="@+id/ishare_msg_id"
-            app:layout_constraintEnd_toStartOf="@+id/ishare_msg_id"
+            app:layout_constraintBottom_toBottomOf="@+id/isearch_msg_id"
+            app:layout_constraintEnd_toStartOf="@+id/isearch_msg_id"
             app:layout_constraintStart_toEndOf="@+id/iaudio_msg_id"
-            app:layout_constraintTop_toTopOf="@+id/ishare_msg_id" />
+            app:layout_constraintTop_toTopOf="@+id/isearch_msg_id" />
 
         <ImageButton
-            android:id="@+id/ishare_msg_id"
+            android:id="@+id/isearch_msg_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="11dp"
             android:elevation="3dp"
-            android:src="@drawable/ic_round_share_24px"
+            android:src="@drawable/ic_round_search_24px"
             app:layout_constraintBottom_toBottomOf="@+id/iclose_msg_id"
             app:layout_constraintEnd_toStartOf="@+id/iclose_msg_id"
             app:layout_constraintStart_toEndOf="@+id/ivideo_msg_id"
@@ -87,7 +87,7 @@
             android:src="@drawable/ic_round_close_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ishare_msg_id"
+            app:layout_constraintStart_toEndOf="@+id/isearch_msg_id"
             app:layout_constraintTop_toTopOf="parent" />
 
 

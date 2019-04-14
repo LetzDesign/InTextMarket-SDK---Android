@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.db.model.IMTempMarkets;
@@ -38,6 +39,7 @@ public class IDBManager {
 
     private static final String DATABASE_NAME = "imarket_db";
     private static IMDataBase imDataBase;
+    private static final int MAX_HISTORY_MARKETS_STORAGE = 5;
 
     public static void init(Context context){
         imDataBase = Room.databaseBuilder(context,
@@ -57,7 +59,7 @@ public class IDBManager {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        @SuppressLint("SimpleDateFormat") String insertAt = new SimpleDateFormat("h:mm a")
+                        @SuppressLint("SimpleDateFormat") String insertAt = new SimpleDateFormat("yyyy-MM-dd h:mm a")
                                 .format(Calendar.getInstance().getTime());
 
                         imDataBase.daoAccess()
@@ -125,8 +127,8 @@ public class IDBManager {
                 .getIMAccessData();
     }
 
-    //Markets requests
-    public static void insertMarketRequest(final String json){
+    //Markets
+    private static void insertMarketRequest(final String json, final String message){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -140,7 +142,7 @@ public class IDBManager {
 
                         IMTempMarkets imTempMarkets = new IMTempMarkets();
 
-                        imTempMarkets.setId(IMUtilities.autoPing());
+                        imTempMarkets.setMessage(message);
                         imTempMarkets.setJson(json);
                         imTempMarkets.setInserted_at(insertAt);
 
@@ -179,6 +181,58 @@ public class IDBManager {
     public static int countIMarketsRequestRows(){
         return imDataBase.daoMarkets()
                 .countIMarketsRequests();
+    }
+
+    public static void insertMarketHistory(final String json, final String message){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @SuppressLint("SimpleDateFormat")
+                    @Override
+                    public void run() {
+                        if(!json.equals("")){
+
+                            IMTempMarkets imTempMarkets = new IMTempMarkets();
+
+                            imTempMarkets.setMessage(message);
+                            imTempMarkets.setJson(json);
+                            imTempMarkets.setInserted_at(
+                                    new SimpleDateFormat("yyyy-MM-dd h:mm a")
+                                            .format(Calendar.getInstance().getTime())
+                            );
+
+                            int insertsCount = imDataBase.daoMarkets()
+                                    .countIMarketsRequests();
+
+                            if(insertsCount == MAX_HISTORY_MARKETS_STORAGE){
+
+                                int _id = imDataBase.daoMarkets()
+                                        .selectFirstMarketRequestId();
+
+                                imDataBase.daoMarkets()
+                                        .deleteMarketsFirstRequest(_id);
+
+                                imDataBase.daoMarkets()
+                                        .insertMarketsRequest(imTempMarkets);
+
+                                IMTempMarkets t = imDataBase.daoMarkets().selectLastMarketInserted();
+                                Log.d("LAST MSG", t.getInserted_at());
+
+                            }else{
+                                imDataBase.daoMarkets()
+                                        .insertMarketsRequest(imTempMarkets);
+
+                                Log.d("LAST MSG", imDataBase.daoMarkets().selectMarketRequestLastMessage());
+                            }
+                        }
+                    }
+                });
+                Looper.loop();
+            }
+        }).start();
     }
 }
 

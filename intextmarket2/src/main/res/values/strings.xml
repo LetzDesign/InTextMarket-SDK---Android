@@ -5,7 +5,8 @@
 
     <string name="app_name">InTextMarket</string>
 
-    <string name="business_fragment_header">Categorias - InTextMarket</string>
+    <string name="business_fragment_header">Búsqueda - InTextMarket</string>
+    <string name="business_sub_header">Seleccione el tipo de acción: llamada, google map o visite su sitio web.</string>
 
     <!-- Dialogs Titles-->
     <string name="root_container_title">Error de Contenedor</string>

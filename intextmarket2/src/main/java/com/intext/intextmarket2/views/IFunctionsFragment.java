@@ -53,7 +53,7 @@ public class IFunctionsFragment extends Fragment {
         void onAttachClick();
         void onAudioClick();
         void onVideoClick();
-        void onSharedClick();
+        void onSearchClick();
     }
 
     @Nullable
@@ -123,13 +123,13 @@ public class IFunctionsFragment extends Fragment {
 
     private void initInterfaceCallbacks(View v) {
         ImageButton cameraBtn, attachBtn, audioBtn,
-                videoBtn, shareBtn;
+                videoBtn, searchBtn;
 
         cameraBtn = v.findViewById(R.id.icamera_msg_id);
         attachBtn = v.findViewById(R.id.iattach_msg_id);
         audioBtn = v.findViewById(R.id.iaudio_msg_id);
         videoBtn = v.findViewById(R.id.ivideo_msg_id);
-        shareBtn = v.findViewById(R.id.ishare_msg_id);
+        searchBtn = v.findViewById(R.id.isearch_msg_id);
 
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,11 +163,11 @@ public class IFunctionsFragment extends Fragment {
             }
         });
 
-        shareBtn.setOnClickListener(new View.OnClickListener() {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(iMarketFunctionsListener != null)
-                    iMarketFunctionsListener.onSharedClick();
+                    iMarketFunctionsListener.onSearchClick();
             }
         });
     }

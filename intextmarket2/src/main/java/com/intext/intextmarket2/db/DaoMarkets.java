@@ -41,6 +41,21 @@ public interface DaoMarkets {
     @Query("DELETE FROM IMTempMarkets")
     void deleteAllIMarkersRequests();
 
+    @Query("DELETE FROM IMTempMarkets WHERE id = :id")
+    void deleteMarketsFirstRequest(int id);
+
     @Query("SELECT COUNT(*) FROM IMTempMarkets")
     int countIMarketsRequests();
+
+    @Query("SELECT id FROM IMTempMarkets LIMIT 1")
+    int selectFirstMarketRequestId();
+
+    @Query("SELECT message FROM IMTempMarkets WHERE id = :id")
+    String selectMarketRequestMessageById(int id);
+
+    @Query("SELECT message FROM IMTempMarkets WHERE id = (SELECT MAX(ID) FROM IMTempMarkets)")
+    String selectMarketRequestLastMessage();
+
+    @Query("SELECT * FROM IMTempMarkets WHERE id = (SELECT MAX(ID) FROM IMTempMarkets)")
+    IMTempMarkets selectLastMarketInserted();
 }

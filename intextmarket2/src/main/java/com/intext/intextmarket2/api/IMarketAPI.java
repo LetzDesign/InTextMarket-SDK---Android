@@ -141,7 +141,7 @@ public class IMarketAPI {
         }
     }
 
-    public synchronized void requestAvailableMarketsByLocation(final FragmentManager fragmentManager , JSONObject imarketObject){
+    public synchronized void requestAvailableMarketsByLocation(final FragmentManager fragmentManager , JSONObject imarketObject, final String message){
         if(IMUtilities.isNetworkConnected(context)){
 
             retrofit = IMUtilities.setRetrofit(
@@ -162,8 +162,9 @@ public class IMarketAPI {
                             if(imBusinessResponse.getService().getBusiness().size() > 0){
 
                                 IDBManager.init(context);
-                                IDBManager.insertMarketRequest(
-                                        IMUtilities.convertPojoToJson(imBusinessResponse)
+                                IDBManager.insertMarketHistory(
+                                        IMUtilities.convertPojoToJson(imBusinessResponse),
+                                        message
                                 );
 
                                 IBusinessFragment iBusinessFragment = new IBusinessFragment();

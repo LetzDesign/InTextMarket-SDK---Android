@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     }
 
     @Override
-    public void onSharedClick() {
-        Toast.makeText(this, "On Fragment Shared click event.", Toast.LENGTH_SHORT).show();
+    public void onSearchClick() {
+        Toast.makeText(this, "On Fragment Search click event.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
