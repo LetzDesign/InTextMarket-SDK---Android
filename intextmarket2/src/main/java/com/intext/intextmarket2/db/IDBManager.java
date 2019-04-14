@@ -127,7 +127,7 @@ public class IDBManager {
     }
 
     //Markets
-    private static void insertMarketRequest(final String json, final String message){
+    public static void insertMarketRequest(final String json, final String message){
         new Thread(new Runnable() {
             @Override
             public void run() {
