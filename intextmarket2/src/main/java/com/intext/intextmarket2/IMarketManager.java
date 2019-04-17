@@ -1,7 +1,6 @@
 package com.intext.intextmarket2;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.text.emoji.EmojiCompat;
 import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
 import android.support.v4.app.FragmentManager;
@@ -40,27 +39,21 @@ public class IMarketManager {
 
     public static void builder(FragmentManager fragmentManager, int fragmentContainer, String token){
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("fragment_container", fragmentContainer);
-        bundle.putString("api_token", token);
-        IMarketFragment iMarketFragment = new IMarketFragment();
-        iMarketFragment.setArguments(bundle);
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(fragmentContainer, iMarketFragment);
+        fragmentTransaction.replace(
+                fragmentContainer,
+                IMarketFragment.newInstance(fragmentContainer, token)
+        );
         fragmentTransaction.commit();
     }
 
     public static void showIMarketFunctions(FragmentManager fragmentManager, int fragmentContainer, String token){
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("fragment_container", fragmentContainer);
-        bundle.putString("api_token", token);
-        IFunctionsFragment iFunctionsFragment = new IFunctionsFragment();
-        iFunctionsFragment.setArguments(bundle);
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(fragmentContainer, iFunctionsFragment);
+        fragmentTransaction.replace(
+                fragmentContainer,
+                IFunctionsFragment.newInstance(fragmentContainer, token)
+        );
         fragmentTransaction.commit();
     }
 

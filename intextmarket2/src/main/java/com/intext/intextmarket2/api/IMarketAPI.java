@@ -141,7 +141,7 @@ public class IMarketAPI {
         }
     }
 
-    public synchronized void requestAvailableMarketsByLocation(final FragmentManager fragmentManager , JSONObject imarketObject, final String message){
+    public void requestAvailableMarketsByLocation(final FragmentManager fragmentManager , JSONObject imarketObject, final String message){
         if(IMUtilities.isNetworkConnected(context)){
 
             retrofit = IMUtilities.setRetrofit(
@@ -169,7 +169,7 @@ public class IMarketAPI {
 
                                 IBusinessFragment iBusinessFragment = new IBusinessFragment();
                                 iBusinessFragment.setImBusinessResponse(imBusinessResponse);
-                                iBusinessFragment.show(fragmentManager, "InText Market");
+                                iBusinessFragment.show(fragmentManager, "InText Markets Search");
 
                             }else{
                                 //TODO no markets available

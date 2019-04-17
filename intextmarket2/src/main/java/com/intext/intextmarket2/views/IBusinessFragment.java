@@ -37,27 +37,34 @@ public class IBusinessFragment extends DialogFragment {
 
     private IMarketBusinessListener iMarketBusinessListener;
     private View IBusinessRoot;
-    private RecyclerView recyclerView;
-    private IMarketsAdapter iMarketCategoryAdapter;
     private IMBusinessResponse imBusinessResponse;
 
     public interface IMarketBusinessListener {}
 
     public IBusinessFragment() {}
 
+    public static IBusinessFragment newInstance(){
+        //TODO Check if need bundle args
+        IBusinessFragment iBusinessFragment = new IBusinessFragment();
+        return iBusinessFragment;
+    }
+
     public void setImBusinessResponse(IMBusinessResponse imBusinessResponse) {
         this.imBusinessResponse = imBusinessResponse;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //if (getArguments() != null) {}
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         IBusinessRoot = inflater.inflate(R.layout.fragment_ibusiness, container, false);
 
-        recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new IMarketsAdapter(getContext(), imBusinessResponse));
+        initRecycleSearchResultView();
 
         return IBusinessRoot;
     }
@@ -79,4 +86,9 @@ public class IBusinessFragment extends DialogFragment {
         iMarketBusinessListener = null;
     }
 
+    private void initRecycleSearchResultView() {
+        RecyclerView recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new IMarketsAdapter(getContext(), imBusinessResponse));
+    }
 }

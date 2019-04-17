@@ -41,12 +41,24 @@ import java.util.Objects;
 
 public class IFunctionsFragment extends Fragment {
 
+    private static final String FRAGMENT_CONTAINER_ARG = "fragment_container";
+    private static final String API_TOKEN_ARG = "api_token";
+
     private View IMarketRoot;
     private int root;
     private String API_TOKEN;
     private IMarketFunctionsListener iMarketFunctionsListener;
 
     public IFunctionsFragment(){}
+
+    public static IFunctionsFragment newInstance(int container, String apiToken){
+        IFunctionsFragment iFunctionsFragment = new IFunctionsFragment();
+        Bundle args = new Bundle();
+        args.putInt(FRAGMENT_CONTAINER_ARG, container);
+        args.putString(API_TOKEN_ARG, apiToken);
+        iFunctionsFragment.setArguments(args);
+        return iFunctionsFragment;
+    }
 
     public interface IMarketFunctionsListener{
         void onCameraClick();
@@ -56,15 +68,20 @@ public class IFunctionsFragment extends Fragment {
         void onSearchClick();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            root = Objects.requireNonNull(getArguments()).getInt("fragment_container", 0);
+            API_TOKEN = getArguments().getString("api_token", "");
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         IMarketRoot = inflater.inflate(R.layout.fragment_ifunctions, container, false);
-
-        Bundle bundle = this.getArguments();
-        root = Objects.requireNonNull(bundle).getInt("fragment_container", 0);
-        API_TOKEN = Objects.requireNonNull(bundle).getString("api_token", "");
 
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 

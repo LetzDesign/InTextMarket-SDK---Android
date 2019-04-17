@@ -1,100 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/icons"
-    android:padding="5dp"
-    android:elevation="3dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/icons"
+    android:padding="5dp">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        app:alignItems="center"
+        app:justifyContent="center"
+        app:flexDirection="row"
+        app:flexWrap="nowrap">
 
         <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/icategory_item_id"
+        android:theme="@style/CategoryButton"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/imemojishapebk"
+        android:src="@drawable/ic_restaurant_itx" />
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/icategory_item_id"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_restaurant_itx"-->
+            <!--android:theme="@style/CategoryButton"-->
+            <!--app:layout_alignSelf="center"-->
+            <!--app:layout_flexBasisPercent="20%" />-->
+
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/icategory_item_id"
-            android:theme="@style/CategoryButton"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/imemojishapebk"
-            android:src="@drawable/ic_restaurant_itx" />
-
-        <LinearLayout
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_margin="4dp"
+            app:alignItems="flex_start"
+            app:justifyContent="flex_start"
+            app:flexDirection="column"
+            app:flexWrap="nowrap"
+            app:layout_flexGrow="1"
+            app:layout_flexBasisPercent="60%">
 
             <TextView
                 android:id="@+id/ibusiness_name_id"
-                android:theme="@style/IBusinessFragmentHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="La fonda de Yaya"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:theme="@style/IBusinessFragmentHeader" />
 
-            <LinearLayout
-                android:orientation="horizontal"
+
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:flexWrap="nowrap">
 
                 <ImageView
-                    android:src="@drawable/ic_email_itw"
-                    android:layout_marginEnd="3dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:src="@drawable/ic_email_itw" />
 
                 <TextView
                     android:id="@+id/ibusiness_email_id"
-                    android:theme="@style/IBusinessFragmentSubHeader"
-                    android:text="lafondadeyaya@gmail.com"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="lafondadeyaya@gmail.com"
+                    android:theme="@style/IBusinessFragmentSubHeader" />
 
-            </LinearLayout>
+            </com.google.android.flexbox.FlexboxLayout>
 
-        </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
-        <LinearLayout
-            android:padding="8dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="nowrap"
+            app:layout_flexGrow="1"
+            app:layout_flexBasisPercent="40%">
 
             <ImageView
-                android:elevation="3dp"
                 android:id="@+id/iweb_event_id"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_web_shopping_itw" />
+                android:src="@drawable/ic_web_shopping_itw"
+                app:layout_alignSelf="flex_start" />
 
             <ImageView
-                android:elevation="3dp"
                 android:id="@+id/iweb_phone_id"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_phone_itw" />
 
             <ImageView
-                android:elevation="3dp"
                 android:id="@+id/iweb_map_id"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_google_maps_itw" />
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_google_maps_itw"
+                app:layout_alignSelf="flex_end" />
 
-        </LinearLayout>
 
-    </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<ImageButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/icategory_item_id"-->
+    <!--android:theme="@style/CategoryButton"-->
+    <!--android:layout_marginEnd="4dp"-->
+    <!--android:layout_marginStart="20dp"-->
+    <!--android:layout_marginTop="4dp"-->
+    <!--android:layout_marginBottom="4dp"-->
+    <!--android:background="@drawable/imemojishapebk"-->
+    <!--android:src="@drawable/ic_restaurant_itx" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ibusiness_name_id"-->
+    <!--android:theme="@style/IBusinessFragmentHeader"-->
+    <!--android:text="La fonda de Yaya"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<ImageView-->
+    <!--android:src="@drawable/ic_email_itw"-->
+    <!--android:layout_marginEnd="3dp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ibusiness_email_id"-->
+    <!--android:theme="@style/IBusinessFragmentSubHeader"-->
+    <!--android:text="lafondadeyaya@gmail.com"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:padding="8dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<ImageView-->
+    <!--android:elevation="3dp"-->
+    <!--android:id="@+id/iweb_event_id"-->
+    <!--android:layout_width="35dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_marginStart="6dp"-->
+    <!--android:src="@drawable/ic_web_shopping_itw" />-->
+
+    <!--<ImageView-->
+    <!--android:elevation="3dp"-->
+    <!--android:id="@+id/iweb_phone_id"-->
+    <!--android:layout_width="35dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_marginStart="6dp"-->
+    <!--android:src="@drawable/ic_phone_itw" />-->
+
+    <!--<ImageView-->
+    <!--android:elevation="3dp"-->
+    <!--android:id="@+id/iweb_map_id"-->
+    <!--android:layout_width="35dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_marginStart="6dp"-->
+    <!--android:src="@drawable/ic_google_maps_itw" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
 </LinearLayout>
