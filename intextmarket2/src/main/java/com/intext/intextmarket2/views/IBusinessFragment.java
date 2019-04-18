@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.IMarketAPI;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;

@@ -16,7 +16,6 @@ import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
-import com.intext.intextmarket2.utils.IMUtilities;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -117,16 +116,18 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
     }
 
     private void createSingleShareBusinessObject(Business businessToHolder){
-        SharedBusinessObject sharedBusinessObject = new SharedBusinessObject();
+        if(businessToHolder != null){
+            SharedBusinessObject sharedBusinessObject = new SharedBusinessObject();
 
-        sharedBusinessObject.setBusinessName(businessToHolder.getName());
-        sharedBusinessObject.setBusinessAddress(businessToHolder.getAddress());
-        sharedBusinessObject.setBusinessPhone(businessToHolder.getPhone());
-        sharedBusinessObject.setBusinessEmail(businessToHolder.getEmail());
-        sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLatitude());
-        sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLongitude());
+            sharedBusinessObject.setBusinessName(businessToHolder.getName());
+            sharedBusinessObject.setBusinessAddress(businessToHolder.getAddress());
+            sharedBusinessObject.setBusinessPhone(businessToHolder.getPhone());
+            sharedBusinessObject.setBusinessEmail(businessToHolder.getEmail());
+            sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLatitude());
+            sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLongitude());
 
-        iMarketAdapterListener.onSingleShareClick(sharedBusinessObject);
+            iMarketAdapterListener.onSingleShareClick(sharedBusinessObject);
+        }
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{
