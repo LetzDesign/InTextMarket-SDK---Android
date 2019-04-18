@@ -118,7 +118,7 @@ public class IBusinessFragment extends DialogFragment implements IMarketsAdapter
     private void initRecycleSearchResultView() {
         RecyclerView recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new IMarketsAdapter(getActivity(), getContext(), imBusinessResponse, this));
+        recyclerView.setAdapter(new IMarketsAdapter(getActivity(), getContext(), imBusinessResponse, this, getFragmentManager()));
     }
 
     private void initSaveSearchButton(){

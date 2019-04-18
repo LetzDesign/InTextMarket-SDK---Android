@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
+import com.intext.intextmarket2.IWebViewFragment;
 import com.intext.intextmarket2.api.IMarketAPI;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.views.IBusinessFragment;
@@ -34,14 +35,14 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity implements IBusinessFragment.IMarketBusinessListener,
-        IFunctionsFragment.IMarketFunctionsListener, IMarketFragment.IMarketListener {
+        IFunctionsFragment.IMarketFunctionsListener, IMarketFragment.IMarketListener, IWebViewFragment.IWebViewFragmentListener {
 
     /**
      * INTEXT MARKET-SDK
      *
      * IMPLEMENTATION SAMPLE
      * InTextChat @2019
-     * @author INTEXT SOFTWARE LLC
+     * @author INTEXT SOFTWARE LLC[
      */
 
     //Business Api access token!

@@ -24,4 +24,9 @@
         <item name="android:text">@string/markets_list_fragment_share</item>
         <item name="android:autofilledHighlight" tools:targetApi="o">@color/colorPrimary</item>
     </style>
+
+    <style name="IWebViewSlide">
+        <item name="android:windowEnterAnimation">@anim/iweb_view_slideup_anim</item>
+        <item name="android:windowExitAnimation">@anim/iweb_view_slideup_anim</item>
+    </style>
 </resources>

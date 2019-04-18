@@ -129,6 +129,10 @@ public class IMUtilities {
         return UUID.randomUUID().toString();
     }
 
+    public static String iWebViewUrlFormatter(String url, String ss, String sc){
+        return url + "?ss=" + ss + "&sc=" + sc;
+    }
+
     @SuppressLint("HardwareIds")
     private static String getPhoneNumber(Activity activity, Context context) {
         TelephonyManager tMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);

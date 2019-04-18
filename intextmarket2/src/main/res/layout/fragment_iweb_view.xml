@@ -3,12 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".IWebViewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/iswipe_layout_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <com.google.android.flexbox.FlexboxLayout
+            app:flexWrap="nowrap"
+            app:flexDirection="column"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:id="@+id/iwebview_fragment_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </WebView>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

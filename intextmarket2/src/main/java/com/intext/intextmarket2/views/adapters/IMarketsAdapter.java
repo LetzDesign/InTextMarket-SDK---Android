@@ -7,16 +7,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
+import com.intext.intextmarket2.IWebViewFragment;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
@@ -43,18 +47,20 @@ import com.intext.intextmarket2.permissions.IMarketPermission;
  * limitations under the License.
  */
 
-public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.CategoryViewHolder>{
+public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.CategoryViewHolder> {
 
     private Context context;
     private Activity activity;
     private IMBusinessResponse imBusinessResponse;
     private IMarketAdapterListener iMarketAdapterListener;
+    private FragmentManager fragmentManager;
 
-    public IMarketsAdapter(Activity activity, Context context, IMBusinessResponse imBusinessResponse, IMarketAdapterListener iMarketAdapterListener) {
+    public IMarketsAdapter(Activity activity, Context context, IMBusinessResponse imBusinessResponse, IMarketAdapterListener iMarketAdapterListener, FragmentManager fragmentManager) {
         this.activity = activity;
         this.context = context;
         this.imBusinessResponse = imBusinessResponse;
         this.iMarketAdapterListener = iMarketAdapterListener;
+        this.fragmentManager = fragmentManager;
     }
 
     public interface IMarketAdapterListener{
@@ -96,6 +102,7 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
                 break;
         }
 
+        //Events
         viewHolder.categoryImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +140,14 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
                     callIntent.setData(Uri.parse("tel:" + businessToHolder.getPhone()));
                     context.startActivity(callIntent);
                 }
+            }
+        });
+
+        viewHolder.webEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IWebViewFragment iWebViewFragment = IWebViewFragment.newInstance(businessToHolder.getSiteUrl());
+                iWebViewFragment.show(fragmentManager, "IWeb View");
             }
         });
     }
