@@ -4,69 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/imemojishapebk"
     tools:context=".views.IMarketFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <com.google.android.flexbox.FlexboxLayout
+        android:background="@drawable/imemojishapebk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp">
+        app:flexDirection="row"
+        android:padding="2dp"
+        app:alignContent="space_around"
+        app:flexWrap="nowrap">L
 
         <android.support.text.emoji.widget.EmojiEditText
+            app:layout_flexBasisPercent="70%"
             android:id="@+id/iMarketTextView"
-            android:layout_width="261dp"
-            android:layout_height="47dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center_vertical"
             android:hint="Enter the message..."
             android:maxLines="3"
-            android:textSize="13dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.068"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
+            android:textSize="13dp" />
 
         <ImageButton
+            app:layout_flexBasisPercent="15%"
             android:id="@+id/send_msg_id"
-            android:layout_width="42dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:elevation="3dp"
+            android:background="#e6e6e6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:foregroundGravity="center_vertical"
-            android:src="@drawable/ic_round_send_24px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/iMarketTextView"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_round_send_24px"/>
 
         <ImageButton
+            android:background="#e6e6e6"
+            android:layout_marginEnd="20dp"
+            app:layout_flexBasisPercent="15%"
             android:id="@+id/functions_msg_id"
-            android:layout_width="42dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:elevation="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:foregroundGravity="center_vertical"
-            android:src="@drawable/ic_round_attach_file_24px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/send_msg_id"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            android:src="@drawable/ic_round_attach_file_24px" />
 
-    </android.support.constraint.ConstraintLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 </FrameLayout>
+
+    <!--ORIGINAL
+
+    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:background="@drawable/imemojishapebk"-->
+<!--tools:context=".views.IMarketFragment">-->
+
+<!--<android.support.constraint.ConstraintLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout_editor_absoluteX="3dp"-->
+    <!--tools:layout_editor_absoluteY="3dp">-->
+
+    <!--<android.support.text.emoji.widget.EmojiEditText-->
+        <!--android:id="@+id/iMarketTextView"-->
+        <!--android:layout_width="261dp"-->
+        <!--android:layout_height="47dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:hint="Enter the message..."-->
+        <!--android:maxLines="3"-->
+        <!--android:textSize="13dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.068"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.533" />-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/send_msg_id"-->
+        <!--android:layout_width="42dp"-->
+        <!--android:layout_height="47dp"-->
+        <!--android:layout_marginStart="6dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:elevation="3dp"-->
+        <!--android:foregroundGravity="center_vertical"-->
+        <!--android:src="@drawable/ic_round_send_24px"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/iMarketTextView"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/functions_msg_id"-->
+        <!--android:layout_width="42dp"-->
+        <!--android:layout_height="47dp"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:elevation="3dp"-->
+        <!--android:foregroundGravity="center_vertical"-->
+        <!--android:src="@drawable/ic_round_attach_file_24px"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/send_msg_id"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.2" />-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+<!--</FrameLayout>-->
+
+
 

@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <corners
-        android:topLeftRadius="98dp"
-        android:topRightRadius="98dp"
-        android:bottomRightRadius="98dp"
-        android:bottomLeftRadius="98dp">
+        android:topLeftRadius="100dp"
+        android:topRightRadius="100dp"
+        android:bottomRightRadius="100dp"
+        android:bottomLeftRadius="100dp">
     </corners>
     <stroke
-        android:width="2dp"
+        android:width="1dp"
         android:color="#E72528">
     </stroke>
     <solid

@@ -31,11 +31,12 @@ public class IMarketPermission {
 
     private static final int PERMISSION_CAMERA = 1;
     private static final int PERMISSION_FINE_LOCATION = 2;
-    private static final int PERMISSION_FINE_CLOCATION = 6;
     private static final int PERMISSION_REC_AUDIO = 3;
-    private static final int PERMISSION_TO_ALL = 444;
     private static final int PERMISSION_TO_SMS = 4;
     private static final int PERMISSION_TO_CONTACTS = 5;
+    private static final int PERMISSION_FINE_CLOCATION = 6;
+    private static final int PERMISSION_CALL_PHONE = 7;
+    private static final int PERMISSION_TO_ALL = 444;
 
     private Activity activity;
     private Context context;
@@ -46,7 +47,8 @@ public class IMarketPermission {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.READ_CONTACTS,
-            Manifest.permission.READ_SMS
+            Manifest.permission.READ_SMS,
+            Manifest.permission.CALL_PHONE
     };
 
     public IMarketPermission(Activity activity, Context context){
@@ -72,6 +74,15 @@ public class IMarketPermission {
                     getGlobalPermissionID()
             );
         }
+    }
+
+    public boolean hasPermission(){
+        if (context != null) {
+            if(ActivityCompat.checkSelfPermission(context, permission)
+                    != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
     }
 
     public void checkPermissions(){
@@ -135,6 +146,9 @@ public class IMarketPermission {
                 break;
             case Manifest.permission.READ_CONTACTS:
                 returnPermission = PERMISSION_TO_CONTACTS;
+                break;
+            case Manifest.permission.CALL_PHONE:
+                returnPermission = PERMISSION_CALL_PHONE;
                 break;
             default:
                 returnPermission = PERMISSION_CAMERA;

@@ -1,13 +1,18 @@
 package com.intext.intextmarket2.views.adapters;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +21,7 @@ import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
+import com.intext.intextmarket2.permissions.IMarketPermission;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -40,10 +46,12 @@ import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.CategoryViewHolder>{
 
     private Context context;
+    private Activity activity;
     private IMBusinessResponse imBusinessResponse;
     private IMarketAdapterListener iMarketAdapterListener;
 
-    public IMarketsAdapter(Context context, IMBusinessResponse imBusinessResponse, IMarketAdapterListener iMarketAdapterListener) {
+    public IMarketsAdapter(Activity activity, Context context, IMBusinessResponse imBusinessResponse, IMarketAdapterListener iMarketAdapterListener) {
+        this.activity = activity;
         this.context = context;
         this.imBusinessResponse = imBusinessResponse;
         this.iMarketAdapterListener = iMarketAdapterListener;
@@ -108,6 +116,25 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
                 createSingleShareBusinessObject(businessToHolder);
             }
         });
+
+        viewHolder.phoneEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                IMarketPermission iMarketPermission = new IMarketPermission(activity, context);
+                iMarketPermission.permission(Manifest.permission.CALL_PHONE);
+
+                if(!iMarketPermission.hasPermission()) {
+
+                    iMarketPermission.checkPermission();
+
+                }else{
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + businessToHolder.getPhone()));
+                    context.startActivity(callIntent);
+                }
+            }
+        });
     }
 
     @Override
@@ -133,6 +160,7 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{
 
         ImageButton categoryImageButton;
+        ImageView webEvent, phoneEvent, mapEvent;
         TextView businessName, businessEmail, singleShare;
         FlexboxLayout flexboxLayout;
 
@@ -144,6 +172,10 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
             businessName = itemView.findViewById(R.id.ibusiness_name_id);
             singleShare = itemView.findViewById(R.id.isingle_share);
             flexboxLayout = itemView.findViewById(R.id.iflex_layout_share);
+
+            webEvent = itemView.findViewById(R.id.iweb_event_id);
+            phoneEvent = itemView.findViewById(R.id.iweb_phone_id);
+            mapEvent = itemView.findViewById(R.id.iweb_map_id);
         }
     }
 }
