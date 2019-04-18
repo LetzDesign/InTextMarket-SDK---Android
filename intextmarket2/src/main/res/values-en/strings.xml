@@ -15,5 +15,6 @@
     <string name="root_container_message">The fragment container not exists…</string>
 
     <string name="markets_list_fragment_save">Save</string>
-    <string name="markets_list_fragment_share">Share</string>
+    <string name="markets_list_fragment_share">Share List</string>
+    <string name="markets_single_fragment_share">Share</string>
 </resources>

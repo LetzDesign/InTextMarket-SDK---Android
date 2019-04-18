@@ -15,5 +15,6 @@
     <string name="root_container_message">El contenedor para el fragmento no existe…</string>
 
     <string name="markets_list_fragment_save">Guardar</string>
-    <string name="markets_list_fragment_share">Compartir</string>
+    <string name="markets_list_fragment_share">Compartir Lista</string>
+    <string name="markets_single_fragment_share">Compartir</string>
 </resources>

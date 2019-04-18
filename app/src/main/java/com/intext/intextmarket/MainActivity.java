@@ -6,9 +6,12 @@ import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.IMarketAPI;
+import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.views.IBusinessFragment;
 import com.intext.intextmarket2.views.IFunctionsFragment;
 import com.intext.intextmarket2.views.IMarketFragment;
+
+import java.util.List;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -102,5 +105,23 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     public void onGetApiToken(String token) {
         API_TOKEN = token;
         Toast.makeText(this,"Token: " + API_TOKEN, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMarketsListShare(List<SharedBusinessObject> marketsFound) {
+        Toast.makeText(
+                this,
+                "On Fragment search market or business click event. \nTotal Markets Found: "+ String.valueOf(marketsFound.size()),
+                Toast.LENGTH_LONG
+        ).show();
+    }
+
+    @Override
+    public void onSingleMarketShare(SharedBusinessObject market) {
+        Toast.makeText(
+                this,
+                "On Fragment search market or business click event. \nMarket Found: "+ market.getBusinessName(),
+                Toast.LENGTH_LONG
+        ).show();
     }
 }

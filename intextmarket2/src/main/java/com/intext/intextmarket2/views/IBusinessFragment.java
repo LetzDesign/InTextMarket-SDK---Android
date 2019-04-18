@@ -11,12 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.intext.intextmarket2.R;
+import com.intext.intextmarket2.api.IMarketAPI;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
+import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.views.adapters.IMarketsAdapter;
+
+import java.util.List;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -38,7 +43,7 @@ import com.intext.intextmarket2.views.adapters.IMarketsAdapter;
  * limitations under the License.
  */
 
-public class IBusinessFragment extends DialogFragment {
+public class IBusinessFragment extends DialogFragment implements IMarketsAdapter.IMarketAdapterListener {
 
     private static final String MSG_ARGS = "message";
     private static final String JSON_ARGS = "json";
@@ -48,7 +53,10 @@ public class IBusinessFragment extends DialogFragment {
     private IMBusinessResponse imBusinessResponse;
     private String json, message;
 
-    public interface IMarketBusinessListener {}
+    public interface IMarketBusinessListener {
+        void onMarketsListShare(List<SharedBusinessObject> marketsList);
+        void onSingleMarketShare(SharedBusinessObject market);
+    }
 
     public IBusinessFragment() {}
 
@@ -103,10 +111,16 @@ public class IBusinessFragment extends DialogFragment {
         iMarketBusinessListener = null;
     }
 
+    @Override
+    public void onSingleShareClick(SharedBusinessObject market) {
+        if(iMarketBusinessListener != null)
+            iMarketBusinessListener.onSingleMarketShare(market);
+    }
+
     private void initRecycleSearchResultView() {
         RecyclerView recyclerView = IBusinessRoot.findViewById(R.id.business_recycle_fragment_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new IMarketsAdapter(getContext(), imBusinessResponse));
+        recyclerView.setAdapter(new IMarketsAdapter(getContext(), imBusinessResponse, this));
     }
 
     private void initSaveSearchButton(){
@@ -135,7 +149,8 @@ public class IBusinessFragment extends DialogFragment {
         shareSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), json, Toast.LENGTH_LONG).show();
+                List<SharedBusinessObject> sharedBusinessObject = IMarketAPI.buildSharedBusinessObject(json);
+                iMarketBusinessListener.onMarketsListShare(sharedBusinessObject);
             }
         });
     }

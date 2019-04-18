@@ -39,6 +39,7 @@
             <!--app:layout_flexBasisPercent="20%" />-->
 
         <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/iflex_layout_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -54,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="La fonda de Yaya"
-                android:theme="@style/IBusinessFragmentHeader" />
+                android:textSize="18sp"/>
 
 
             <com.google.android.flexbox.FlexboxLayout
@@ -79,6 +80,15 @@
                     android:theme="@style/IBusinessFragmentSubHeader" />
 
             </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/isingle_share"
+                android:textStyle="bold|italic"
+                android:textSize="12sp"
+                android:text="@string/markets_single_fragment_share"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </com.google.android.flexbox.FlexboxLayout>
 

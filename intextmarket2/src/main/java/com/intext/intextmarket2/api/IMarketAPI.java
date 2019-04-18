@@ -8,13 +8,18 @@ import com.intext.intextmarket2.IMarketManager;
 import com.intext.intextmarket2.api.interfaces.IMarketApiAuth;
 import com.intext.intextmarket2.api.interfaces.IMarketRequestBusiness;
 import com.intext.intextmarket2.api.pojo.APIAuthResponse;
+import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
+import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.utils.IMUtilities;
 import com.intext.intextmarket2.views.IBusinessFragment;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -189,6 +194,33 @@ public class IMarketAPI {
         }else{
             //TODO on network unavailable dialog or handler...
         }
+    }
+
+    public static List<SharedBusinessObject> buildSharedBusinessObject(String json){
+
+        List<SharedBusinessObject> listOfBusiness = new ArrayList<>();
+        IMBusinessResponse imBusinessResponse = IMUtilities.convertJsonToIMBusinessResponse(json);
+
+        if(imBusinessResponse != null && imBusinessResponse.getService() != null){
+            for (Business business : imBusinessResponse.getService().getBusiness()) {
+
+                SharedBusinessObject sharedBusinessObject = new SharedBusinessObject();
+
+                sharedBusinessObject.setBusinessAddress(business.getAddress());
+                sharedBusinessObject.setBusinessEmail(business.getEmail());
+                sharedBusinessObject.setBusinessName(business.getName());
+                sharedBusinessObject.setBusinessPhone(business.getPhone());
+                sharedBusinessObject.setLatitude(business.getLocation().getLatitude());
+                sharedBusinessObject.setLongitude(business.getLocation().getLongitude());
+
+                listOfBusiness.add(sharedBusinessObject);
+            }
+        }else{
+            //TODO create alert
+            listOfBusiness = null;
+        }
+
+        return listOfBusiness;
     }
 
     public void setConfig(Config config) {

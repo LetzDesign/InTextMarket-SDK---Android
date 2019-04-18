@@ -12,6 +12,7 @@ import android.telephony.TelephonyManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.permissions.IMarketPermission;
 
@@ -73,6 +74,11 @@ public class IMUtilities {
     public static String convertPojoToJson(Object pojo){
         Gson stringConverter = new GsonBuilder().create();
         return stringConverter.toJson(pojo);
+    }
+
+    public static IMBusinessResponse convertJsonToIMBusinessResponse(String json){
+        Gson pojoConverter = new GsonBuilder().create();
+        return pojoConverter.fromJson(json, IMBusinessResponse.class);
     }
 
     public static JSONObject createIMarketTextObject(

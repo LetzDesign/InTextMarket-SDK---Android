@@ -11,9 +11,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.flexbox.FlexboxLayout;
 import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
+import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
+import com.intext.intextmarket2.utils.IMUtilities;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -39,10 +42,16 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
 
     private Context context;
     private IMBusinessResponse imBusinessResponse;
+    private IMarketAdapterListener iMarketAdapterListener;
 
-    public IMarketsAdapter(Context context, IMBusinessResponse imBusinessResponse) {
+    public IMarketsAdapter(Context context, IMBusinessResponse imBusinessResponse, IMarketAdapterListener iMarketAdapterListener) {
         this.context = context;
         this.imBusinessResponse = imBusinessResponse;
+        this.iMarketAdapterListener = iMarketAdapterListener;
+    }
+
+    public interface IMarketAdapterListener{
+        void onSingleShareClick(SharedBusinessObject market);
     }
 
     @NonNull
@@ -87,6 +96,19 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
             }
         });
 
+        viewHolder.singleShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createSingleShareBusinessObject(businessToHolder);
+            }
+        });
+
+        viewHolder.flexboxLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createSingleShareBusinessObject(businessToHolder);
+            }
+        });
     }
 
     @Override
@@ -94,10 +116,24 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
         return imBusinessResponse.getService().getBusiness().size();
     }
 
+    private void createSingleShareBusinessObject(Business businessToHolder){
+        SharedBusinessObject sharedBusinessObject = new SharedBusinessObject();
+
+        sharedBusinessObject.setBusinessName(businessToHolder.getName());
+        sharedBusinessObject.setBusinessAddress(businessToHolder.getAddress());
+        sharedBusinessObject.setBusinessPhone(businessToHolder.getPhone());
+        sharedBusinessObject.setBusinessEmail(businessToHolder.getEmail());
+        sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLatitude());
+        sharedBusinessObject.setLongitude(businessToHolder.getLocation().getLongitude());
+
+        iMarketAdapterListener.onSingleShareClick(sharedBusinessObject);
+    }
+
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{
 
         ImageButton categoryImageButton;
-        TextView businessName, businessEmail;
+        TextView businessName, businessEmail, singleShare;
+        FlexboxLayout flexboxLayout;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -105,6 +141,8 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
             categoryImageButton = itemView.findViewById(R.id.icategory_item_id);
             businessEmail = itemView.findViewById(R.id.ibusiness_email_id);
             businessName = itemView.findViewById(R.id.ibusiness_name_id);
+            singleShare = itemView.findViewById(R.id.isingle_share);
+            flexboxLayout = itemView.findViewById(R.id.iflex_layout_share);
         }
     }
 }
