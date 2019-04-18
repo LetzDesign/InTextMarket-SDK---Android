@@ -8,4 +8,20 @@
         <item name="android:autofilledHighlight">@color/colorAccent</item>
         <item name="android:elevation">3dp</item>
     </style>
+
+    <style name="IMarketSearchFragmentButton">
+        <item name="android:background">@color/icons</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:drawableTop">@drawable/ic_save_all_24_itw</item>
+        <item name="android:text">@string/markets_list_fragment_save</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@color/colorPrimary</item>
+    </style>
+
+    <style name="IMarketShareFragmentButton">
+        <item name="android:background">@color/icons</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:drawableTop">@drawable/ic_share_itw</item>
+        <item name="android:text">@string/markets_list_fragment_share</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@color/colorPrimary</item>
+    </style>
 </resources>

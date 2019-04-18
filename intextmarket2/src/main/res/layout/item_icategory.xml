@@ -29,6 +29,15 @@
         android:background="@drawable/imemojishapebk"
         android:src="@drawable/ic_restaurant_itx" />
 
+        <!--<ImageButton-->
+            <!--android:id="@+id/icategory_item_id"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_restaurant_itx"-->
+            <!--android:theme="@style/CategoryButton"-->
+            <!--app:layout_alignSelf="center"-->
+            <!--app:layout_flexBasisPercent="20%" />-->
+
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,6 +85,7 @@
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
             app:alignItems="center"
             app:flexDirection="row"
             app:flexWrap="nowrap"
@@ -84,22 +94,22 @@
 
             <ImageView
                 android:id="@+id/iweb_event_id"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_web_shopping_itw"
                 app:layout_alignSelf="flex_start" />
 
             <ImageView
                 android:id="@+id/iweb_phone_id"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:src="@drawable/ic_phone_itw" />
 
             <ImageView
                 android:id="@+id/iweb_map_id"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:src="@drawable/ic_google_maps_itw"
                 app:layout_alignSelf="flex_end" />

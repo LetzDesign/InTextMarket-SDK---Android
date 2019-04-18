@@ -244,6 +244,7 @@ public class IMarketFragment extends Fragment {
 
     private void initDB(Context context){
         IDBManager.init(context);
+        //TODO REMOVE IN PRODUCTION - DEV ONLY. lcn
         //IDBManager.deleteAllMarketsRequests();
     }
 }

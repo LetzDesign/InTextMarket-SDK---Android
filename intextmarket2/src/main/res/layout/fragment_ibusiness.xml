@@ -57,27 +57,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textStyle="italic"
             android:text="@string/business_sub_header"
             android:theme="@style/IBusinessFragmentSubHeader"
             />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="395dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="?android:attr/listDivider" />
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/business_recycle_fragment_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:scrollbars="horizontal">
 
         </android.support.v7.widget.RecyclerView>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="10dp"
+            app:flexWrap="nowrap"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:theme="@style/IMarketSearchFragmentButton"
+                android:id="@+id/isave_makert_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:theme="@style/IMarketShareFragmentButton"
+                android:id="@+id/ishare_makert_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.flexbox.FlexboxLayout>
 
     </LinearLayout>
 

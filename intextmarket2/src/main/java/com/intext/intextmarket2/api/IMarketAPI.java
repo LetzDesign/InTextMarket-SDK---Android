@@ -161,13 +161,11 @@ public class IMarketAPI {
                         if(imBusinessResponse != null){
                             if(imBusinessResponse.getService().getBusiness().size() > 0){
 
-                                IDBManager.init(context);
-                                IDBManager.insertMarketHistory(
+                                IBusinessFragment iBusinessFragment = IBusinessFragment.newInstance(
                                         IMUtilities.convertPojoToJson(imBusinessResponse),
                                         message
                                 );
 
-                                IBusinessFragment iBusinessFragment = new IBusinessFragment();
                                 iBusinessFragment.setImBusinessResponse(imBusinessResponse);
                                 iBusinessFragment.show(fragmentManager, "InText Markets Search");
 
