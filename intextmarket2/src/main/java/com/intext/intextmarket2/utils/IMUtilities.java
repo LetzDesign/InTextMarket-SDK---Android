@@ -20,6 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 import retrofit2.Retrofit;
@@ -45,7 +50,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * limitations under the License.
  */
 
+@SuppressLint("SimpleDateFormat")
 public class IMUtilities {
+
+    private static final long DIFF_TIME_CONSTANT = (1000 * 60 * 60 * 24);
+    private static final DateFormat TOKEN_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void rootViewValidation(Context c, int root) {
         if (root == 0) {
@@ -131,6 +140,28 @@ public class IMUtilities {
 
     public static String iWebViewUrlFormatter(String url, String ss, String sc){
         return url + "?ss=" + ss + "&sc=" + sc;
+    }
+
+    public static boolean isTokenNeedRefresh(String tokenInsertedAt){
+        boolean refresh = false;
+        try {
+            Date tokenDate = TOKEN_DATE_FORMAT.parse(tokenInsertedAt);
+
+            String strToday = new SimpleDateFormat("yyyy-MM-dd h:mm a")
+                    .format(Calendar.getInstance().getTime());
+
+            Date today = TOKEN_DATE_FORMAT.parse(strToday);
+
+            long diff = (today.getTime() - tokenDate.getTime()) / DIFF_TIME_CONSTANT;
+
+            if(diff > 0)
+                refresh = true;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return refresh;
     }
 
     @SuppressLint("HardwareIds")

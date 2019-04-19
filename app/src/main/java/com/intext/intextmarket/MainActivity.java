@@ -2,10 +2,12 @@ package com.intext.intextmarket;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
-import com.intext.intextmarket2.IWebViewFragment;
+import com.intext.intextmarket2.db.IDBManager;
+import com.intext.intextmarket2.views.IWebViewFragment;
 import com.intext.intextmarket2.api.IMarketAPI;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.views.IBusinessFragment;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         //Init IMarket Config object
         IMarketAPI.Config config = new IMarketAPI.Config();
@@ -67,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
                 getSupportFragmentManager(), //Activity Fragment Manager
                 R.id.market_fragment //Fragment container layout ID
         );
-
-        setContentView(R.layout.activity_main);
     }
 
     //Implement IMarket listeners (IFunctionsFragment.IMarketFunctionsListener and IMarketFragment.IMarketListener)
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     @Override
     public void onGetApiToken(String token) {
         API_TOKEN = token;
-        Toast.makeText(this,"Token: " + API_TOKEN, Toast.LENGTH_SHORT).show();
+        Log.d("TOKEN", token);
     }
 
     @Override

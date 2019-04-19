@@ -1,4 +1,4 @@
-package com.intext.intextmarket2;
+package com.intext.intextmarket2.views;
 
 /**
  * Created by Ing. Letzer Cartagena Negron
@@ -34,12 +34,10 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
+import com.intext.intextmarket2.R;
 import com.intext.intextmarket2.utils.IMUtilities;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 

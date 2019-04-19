@@ -1,5 +1,6 @@
 package com.intext.intextmarket2.api;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -12,14 +13,22 @@ import com.intext.intextmarket2.api.pojo.Business;
 import com.intext.intextmarket2.api.pojo.IMBusinessResponse;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
 import com.intext.intextmarket2.db.IDBManager;
+import com.intext.intextmarket2.db.model.IMAccess;
 import com.intext.intextmarket2.dialogs.IMarketDialogs;
 import com.intext.intextmarket2.utils.IMUtilities;
 import com.intext.intextmarket2.views.IBusinessFragment;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +70,7 @@ public class IMarketAPI {
     private Retrofit retrofit;
     private FragmentManager fragmentManager;
     private int layout;
+    private boolean needTokenRefresh = true;
 
     public IMarketAPI() {}
 
@@ -83,66 +93,83 @@ public class IMarketAPI {
     }
 
     public void apiAccountValidation(){
+
         //TODO Configure Server SSL - REMOVE CLEARTEXT = true from the Manifest!!!
-        if(IMUtilities.isNetworkConnected(context)) {
-            retrofit = IMUtilities.setRetrofit(INTEXTWORDS_BASE_URL + INTEXTWORDS_API_PREFIX + INTEXTWORDS_API_VERSION);
-            iMarketApiAuthService = retrofit.create(IMarketApiAuth.class);
 
-            Call<APIAuthResponse> call = iMarketApiAuthService
-                    .getApplicationAccess(
-                            config.ACCOUNT_KEY,
-                            config.ACCOUNT_ID,
-                            Config.API_KEY,
-                            config.API_SECRET
-                    );
+        IMarketManager.initIMarketEmoji(context);
 
-            call.enqueue(new Callback<APIAuthResponse>() {
-                @Override
-                public void onResponse(Call<APIAuthResponse> call, Response<APIAuthResponse> response) {
-                    if(response.code() == 200){
-                        apiAuthResponse = response.body();
-                        if(apiAuthResponse != null){
-                            if(apiAuthResponse.getStatus() == 200){
+        IDBManager.init(context);
+        IMAccess imAccess = IDBManager.selectAllAccessData();
 
-                                IDBManager.init(context);
-                                IDBManager.insertAccessData(
-                                        apiAuthResponse.getToken(),
-                                        apiAuthResponse.getAccountID()
-                                );
+        if(imAccess != null)
+            needTokenRefresh = IMUtilities.isTokenNeedRefresh(imAccess.getInserted_at());
 
-                                IMarketManager.initIMarketEmoji(context);
-                                IMarketManager.builder(fragmentManager, layout, apiAuthResponse.getToken());
+        if(needTokenRefresh){
 
+            if(IMUtilities.isNetworkConnected(context)) {
+
+                retrofit = IMUtilities.setRetrofit(INTEXTWORDS_BASE_URL + INTEXTWORDS_API_PREFIX + INTEXTWORDS_API_VERSION);
+                iMarketApiAuthService = retrofit.create(IMarketApiAuth.class);
+
+                Call<APIAuthResponse> call = iMarketApiAuthService
+                        .getApplicationAccess(
+                                config.ACCOUNT_KEY,
+                                config.ACCOUNT_ID,
+                                Config.API_KEY,
+                                config.API_SECRET
+                        );
+
+                call.enqueue(new Callback<APIAuthResponse>() {
+                    @Override
+                    public void onResponse(Call<APIAuthResponse> call, Response<APIAuthResponse> response) {
+                        if(response.code() == 200){
+                            apiAuthResponse = response.body();
+                            if(apiAuthResponse != null){
+                                if(apiAuthResponse.getStatus() == 200){
+
+                                    IDBManager.insertAccessData(
+                                            apiAuthResponse.getToken(),
+                                            apiAuthResponse.getAccountID()
+                                    );
+
+                                    //init (Token refreshed)
+                                    IMarketManager.builder(fragmentManager, layout, apiAuthResponse.getToken());
+
+                                }else{
+                                    IMarketDialogs.genericDialog(
+                                            context,
+                                            "INTextMarket API Auth Fail",
+                                            "Please check your application credentials...",
+                                            IMarketDialogs.IMDialogType.WARNING
+                                    );
+                                }
                             }else{
                                 IMarketDialogs.genericDialog(
                                         context,
                                         "INTextMarket API Auth Fail",
                                         "Please check your application credentials...",
-                                        IMarketDialogs.IMDialogType.WARNING
+                                        IMarketDialogs.IMDialogType.ERROR
                                 );
                             }
-                        }else{
-                            IMarketDialogs.genericDialog(
-                                    context,
-                                    "INTextMarket API Auth Fail",
-                                    "Please check your application credentials...",
-                                    IMarketDialogs.IMDialogType.ERROR
-                            );
                         }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<APIAuthResponse> call, Throwable t) {
-                    IMarketDialogs.genericDialog(
-                            context,
-                            "Auth API Server Error",
-                            "An error occurred, please try again or contact us.\n" +
-                                    "Error: " + t.getMessage() + "\nCode: " + t.getStackTrace().toString(),
-                            IMarketDialogs.IMDialogType.ERROR
-                    );
-                }
-            });
+                    @Override
+                    public void onFailure(Call<APIAuthResponse> call, Throwable t) {
+                        IMarketDialogs.genericDialog(
+                                context,
+                                "Auth API Server Error",
+                                "An error occurred, please try again or contact us.\n" +
+                                        "Error: " + t.getMessage() + "\nCode: " + t.getStackTrace().toString(),
+                                IMarketDialogs.IMDialogType.ERROR
+                        );
+                    }
+                });
+            }
+        }else{
+            //init
+            //TODO Bug -> KeyBoard Open on this init (Synchronous...)
+            IMarketManager.builder(fragmentManager, layout, imAccess.getToken());
         }
     }
 

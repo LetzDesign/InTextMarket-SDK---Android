@@ -79,6 +79,10 @@ public class IMarketFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         if (getArguments() != null) {
             root = Objects.requireNonNull(getArguments()).getInt("fragment_container", 0);
             API_TOKEN = getArguments().getString("api_token", "");
@@ -94,8 +98,6 @@ public class IMarketFragment extends Fragment {
         IMUtilities.rootViewValidation(IMarketRoot.getContext(), root);
 
         sendButton = IMarketRoot.findViewById(R.id.send_msg_id);
-
-        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         initPressAndHoldListener();
         initFunctionsListener();
