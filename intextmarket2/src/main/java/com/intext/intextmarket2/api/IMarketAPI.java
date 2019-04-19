@@ -104,6 +104,8 @@ public class IMarketAPI {
         if(imAccess != null)
             needTokenRefresh = IMUtilities.isTokenNeedRefresh(imAccess.getInserted_at());
 
+        //init
+        //TODO Bug -> KeyBoard Open on this init (Synchronous...)
         if(needTokenRefresh){
 
             if(IMUtilities.isNetworkConnected(context)) {
@@ -166,9 +168,8 @@ public class IMarketAPI {
                     }
                 });
             }
-        }else{
-            //init
-            //TODO Bug -> KeyBoard Open on this init (Synchronous...)
+        }else {
+            assert imAccess != null;
             IMarketManager.builder(fragmentManager, layout, imAccess.getToken());
         }
     }
