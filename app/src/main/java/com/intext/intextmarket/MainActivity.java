@@ -6,7 +6,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.intext.intextmarket2.IMarketManager;
-import com.intext.intextmarket2.db.IDBManager;
 import com.intext.intextmarket2.views.IWebViewFragment;
 import com.intext.intextmarket2.api.IMarketAPI;
 import com.intext.intextmarket2.api.pojo.SharedBusinessObject;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
      *
      * IMPLEMENTATION SAMPLE
      * InTextChat @2019
-     * @author INTEXT SOFTWARE LLC[
+     * @author INTEXT SOFTWARE LLC
      */
 
     //Business Api access token!
@@ -110,10 +109,10 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     }
 
     @Override
-    public void onMarketsListShare(List<SharedBusinessObject> marketsFound) {
+    public void onMarketsListShare(List<SharedBusinessObject> markets) {
         Toast.makeText(
                 this,
-                "On Fragment search market or business click event. \nTotal Markets Found: "+ String.valueOf(marketsFound.size()),
+                "On Fragment search market or business click event. \nTotal Markets Found: "+ String.valueOf(markets.size()),
                 Toast.LENGTH_LONG
         ).show();
     }

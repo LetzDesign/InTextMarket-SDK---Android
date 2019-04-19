@@ -52,7 +52,7 @@ public class IBusinessFragment extends DialogFragment implements IMarketsAdapter
     private String json, message;
 
     public interface IMarketBusinessListener {
-        void onMarketsListShare(List<SharedBusinessObject> marketsList);
+        void onMarketsListShare(List<SharedBusinessObject> markets);
         void onSingleMarketShare(SharedBusinessObject market);
     }
 
