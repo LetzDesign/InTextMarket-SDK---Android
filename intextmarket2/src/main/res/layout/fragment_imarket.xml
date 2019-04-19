@@ -13,7 +13,7 @@
         app:flexDirection="row"
         android:padding="4dp"
         app:alignContent="space_around"
-        app:flexWrap="nowrap">L
+        app:flexWrap="nowrap">
 
         <android.support.text.emoji.widget.EmojiEditText
             app:layout_flexBasisPercent="70%"

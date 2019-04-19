@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     @Override
     public void onGetApiToken(String token) {
         API_TOKEN = token;
-        Log.d("TOKEN", token);
+        Log.d("TOKEN", API_TOKEN);
     }
 
     @Override

@@ -6,7 +6,7 @@
     <string name="app_name">InTextMarket</string>
 
     <string name="business_fragment_header">Búsqueda - InTextMarket</string>
-    <string name="business_sub_header">Seleccione el tipo de acción: llamada, google map o visite su sitio web.</string>
+    <string name="business_sub_header">Seleccione el tipo de acción: llamada, Google Maps o visite su sitio web.</string>
 
     <!-- Dialogs Titles-->
     <string name="root_container_title">Error de Contenedor</string>
@@ -17,7 +17,5 @@
     <string name="markets_list_fragment_save">Guardar</string>
     <string name="markets_list_fragment_share">Compartir Lista</string>
     <string name="markets_single_fragment_share">Compartir</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="markets_list_fragment_saved">Guardado!</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="app_name">InTextMarket</string>
 
     <string name="business_fragment_header">Search - InTextMarket</string>
-    <string name="business_sub_header">Seleccione el tipo de acción: llamada, google map o visite su sitio web.</string>
+    <string name="business_sub_header">Select the type of action: call, Google Maps or visit the website.</string>
 
     <!-- Dialogs Titles-->
     <string name="root_container_title">Root Container Error</string>
@@ -17,4 +17,6 @@
     <string name="markets_list_fragment_save">Save</string>
     <string name="markets_list_fragment_share">Share List</string>
     <string name="markets_single_fragment_share">Share</string>
+    <string name="markets_list_fragment_saved">Saved!</string>
+
 </resources>

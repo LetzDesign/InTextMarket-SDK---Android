@@ -11,6 +11,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="IBusinessEmailText">
+        <item name="android:textSize">9sp</item>
+    </style>
+
     <style name="CategoryButton">
         <item name="android:background">@drawable/imemojishapebk</item>
         <item name="android:padding">4dp</item>

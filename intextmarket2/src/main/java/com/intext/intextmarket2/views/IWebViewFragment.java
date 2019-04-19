@@ -120,6 +120,7 @@ public class IWebViewFragment extends DialogFragment {
         }
     }
 
+    //TODO remove if not used
     private int getScale(){
         Display display = ((WindowManager) Objects.requireNonNull(getContext())
                 .getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -151,7 +152,7 @@ public class IWebViewFragment extends DialogFragment {
         iWebView.getSettings().setUseWideViewPort(true);
         iWebView.getSettings().setLoadWithOverviewMode(true);
         iWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        iWebView.setInitialScale(getScale());
+        iWebView.setInitialScale(1);
 
         iWebView.loadUrl(
                 IMUtilities.iWebViewUrlFormatter(

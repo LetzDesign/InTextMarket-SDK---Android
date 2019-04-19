@@ -134,6 +134,7 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
                     iMarketPermission.checkPermission();
 
                 }else{
+                    //TODO send click top API
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + businessToHolder.getPhone()));
                     context.startActivity(callIntent);
@@ -146,6 +147,23 @@ public class IMarketsAdapter extends RecyclerView.Adapter<IMarketsAdapter.Catego
             public void onClick(View v) {
                 IWebViewFragment iWebViewFragment = IWebViewFragment.newInstance(businessToHolder.getSiteUrl());
                 iWebViewFragment.show(fragmentManager, "IWeb View");
+            }
+        });
+
+        viewHolder.mapEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO send click top API
+                Uri mapUri = Uri.parse("geo:0,0?q=" +
+                        businessToHolder.getLocation().getLatitude().toString() + "," +
+                        businessToHolder.getLocation().getLongitude().toString() +
+                        "("+businessToHolder.getName()+" by InTextWords)"
+                );
+
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if(mapIntent.resolveActivity(activity.getPackageManager()) != null)
+                    activity.startActivity(mapIntent);
             }
         });
     }
