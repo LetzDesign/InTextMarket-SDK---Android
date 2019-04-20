@@ -157,7 +157,10 @@ public class IMarketFragment extends Fragment {
                         try {
 
                             String msg = emojiEditText.getText().toString();
+
+                            iMarketListener.onSendClick(msg);
                             cleanEmojiEditText();
+
                             JSONObject jsonObject = IMUtilities.createIMarketTextObject(
                                     getActivity(),//TODO is necessary?
                                     getContext(),//TODO is necessary?
