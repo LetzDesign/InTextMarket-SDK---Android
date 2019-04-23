@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:flexDirection="row"
-        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:elevation="1dp"
+        android:padding="8dp"
         app:alignContent="space_around"
         app:flexWrap="nowrap">
 
