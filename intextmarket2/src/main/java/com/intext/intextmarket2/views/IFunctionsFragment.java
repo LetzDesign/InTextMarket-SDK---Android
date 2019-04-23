@@ -95,13 +95,6 @@ public class IFunctionsFragment extends Fragment {
         IMLocation imLocation = new IMLocation(getContext(), getActivity());
         imLocation.init();
 
-        Toast.makeText(
-                getContext(),
-                "Latitude: " + imLocation.getLatitude()
-                        + "\nLongitude: " + imLocation.getLongitude(),
-                Toast.LENGTH_SHORT
-        ).show();
-
         return IMarketRoot;
     }
 
