@@ -215,6 +215,7 @@ public class IMarketFragment extends Fragment {
         });
 
         emojiEditText = v.findViewById(R.id.iMarketTextView);
+        emojiEditText.requestFocus();
         emojiEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
