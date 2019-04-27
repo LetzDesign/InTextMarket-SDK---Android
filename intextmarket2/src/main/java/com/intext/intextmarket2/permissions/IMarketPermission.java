@@ -36,6 +36,7 @@ public class IMarketPermission {
     private static final int PERMISSION_TO_CONTACTS = 5;
     private static final int PERMISSION_FINE_CLOCATION = 6;
     private static final int PERMISSION_CALL_PHONE = 7;
+    private static final int PERMISSION_EXTERNAL_STORAGE = 7;
     private static final int PERMISSION_TO_ALL = 444;
 
     private Activity activity;
@@ -48,7 +49,8 @@ public class IMarketPermission {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.READ_SMS,
-            Manifest.permission.CALL_PHONE
+            Manifest.permission.CALL_PHONE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
     public IMarketPermission(Activity activity, Context context){
@@ -149,6 +151,9 @@ public class IMarketPermission {
                 break;
             case Manifest.permission.CALL_PHONE:
                 returnPermission = PERMISSION_CALL_PHONE;
+                break;
+            case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+                returnPermission = PERMISSION_EXTERNAL_STORAGE;
                 break;
             default:
                 returnPermission = PERMISSION_CAMERA;
