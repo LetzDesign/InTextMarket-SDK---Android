@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:inputType="textCapSentences"
+            android:inputType="textCapWords"
             android:gravity="center_vertical"
             android:hint="Enter the message..."
             android:maxLines="3"
