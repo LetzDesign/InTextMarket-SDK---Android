@@ -74,6 +74,7 @@ public class IMarketFragment extends Fragment {
     public interface IMarketListener{
         void onSendClick(String message);
         void onGetApiToken(String token);
+        void onTypingEvent(TypingEvent typingEvent);
     }
 
     @Override
@@ -84,8 +85,8 @@ public class IMarketFragment extends Fragment {
                 | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         if (getArguments() != null) {
-            root = Objects.requireNonNull(getArguments()).getInt("fragment_container", 0);
-            API_TOKEN = getArguments().getString("api_token", "");
+            root = Objects.requireNonNull(getArguments()).getInt(FRAGMENT_CONTAINER_ARG, 0);
+            API_TOKEN = getArguments().getString(API_TOKEN_ARG, "");
         }
     }
 
@@ -207,9 +208,10 @@ public class IMarketFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(iMarketListener != null)
+                if(iMarketListener != null){
+                    iMarketListener.onTypingEvent(TypingEvent.STOP);
                     iMarketListener.onSendClick(emojiEditText.getText().toString());
-
+                }
                 cleanEmojiEditText();
             }
         });
@@ -225,9 +227,11 @@ public class IMarketFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().trim().length() < 1){
+                    iMarketListener.onTypingEvent(TypingEvent.STOP);
                     sendButton.setEnabled(false);
                     sendButton.setImageAlpha(0x3F);
                 }else{
+                    iMarketListener.onTypingEvent(TypingEvent.START);
                     sendButton.setEnabled(true);
                     sendButton.setImageAlpha(0xFF);
                 }
@@ -252,5 +256,10 @@ public class IMarketFragment extends Fragment {
         IDBManager.init(context);
         //TODO REMOVE IN PRODUCTION - DEV ONLY. lcn
         //IDBManager.deleteAllMarketsRequests();
+    }
+
+    public enum TypingEvent{
+        START,
+        STOP
     }
 }

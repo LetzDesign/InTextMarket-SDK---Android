@@ -109,6 +109,15 @@ public class MainActivity extends AppCompatActivity implements IBusinessFragment
     }
 
     @Override
+    public void onTypingEvent(IMarketFragment.TypingEvent typingEvent) {
+        Toast.makeText(
+                this,
+                "On Typing event...",
+                Toast.LENGTH_LONG
+        ).show();
+    }
+
+    @Override
     public void onMarketsListShare(List<SharedBusinessObject> markets) {
         Toast.makeText(
                 this,
